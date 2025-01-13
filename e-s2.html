@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chenmu Zhang</title>
+
+  <!-- Bootstrap CSS -->
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="bg-dark p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      
+      <!-- 1. "Chenmu Zhang" links to the current page (index.html, for example) 
+          2. Enhanced font size, color, and removed underline -->
+      <h1 class="m-0 fs-1 mb-2 lead">
+        <a href="index.html" class="text-decoration-none text-light">
+          Chenmu Zhang
+        </a>
+      </h1>
+
+      <!-- 2. Navigation links to other pages: research.html, publications.html, bio.html 
+          3. Adjusted font size (fs-5) and color (text-dark) -->
+      <nav>
+        <a href="index.html#R1" class="mx-2 text-decoration-none fs-5 text-light">
+          Research
+        </a>
+        <a href="publications.html" class="mx-2 text-decoration-none fs-5 text-light">
+          Publications
+        </a>
+        <a href="bio.html" class="mx-2 text-decoration-none fs-5 text-light">
+          Bio
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main class="container my-5">
+
+    <!-- Figure -->
+    <div class="row">
+      <div class="col-12 text-center mb-4">
+        <!-- Replace "images/e-ph1.png" with the actual image path -->
+        <img
+          src="images/e-s2-si.png"
+          alt="Figure"
+          class="img-fluid"
+          style="max-width: 1000px;"
+        />
+      </div>
+    </div>
+  
+    <!-- Large Block of Text -->
+    <div class="row">
+      <div class="col-12 mb-4">
+        <h2 class="mb-3">Abstract</h2>
+        <p>
+          There is great interest in developing advanced electrical conductors with higher conductivity, lighter weight, and higher mechanical strength than copper (Cu). One promising candidate is copper-graphene (Cu-Gr) composite, which is hypothesized to have a higher electrical conductivity than Cu. In this work, it is shown that this is not true, supported by state-of-the-art first-principles calculations ofelectron transport. Particularly, contrary to the beliefthat graphene in the composite is more conductive than pristine Cu, it is less conductive due to increased scattering despite increased carrier concentration. On the other hand, it is found that compressive strain along the (111) plane increases the conductivity, which is confirmed experimentally, while tensile strain has little effect. The work offers new insights into understanding and developing advanced conductors.
+        </p>
+      </div>
+    </div>
+  
+    <!-- Reference -->
+    <div class="row">
+      <div class="col-12">
+        <h3>Reference</h3>
+        <p>
+          [1]	<u>C. Zhang</u>, Z. Xiao, R. Paddock, M. Cullinan, M. Tehrani, and Y. Liu, Effects of Graphene Doping on the Electrical Conductivity of Copper. <u>Advanced Functional Materials (2024)</u>.
+        </p>
+      </div>
+    </div>
+  
+  </main>
+  
+
+
+
+  <!-- FOOTER -->
+  <footer class="bg-light text-center py-3">
+    <p class="m-0">&copy; 2025 Powered by Chenmu</p>
+  </footer>
+
+  <!-- Bootstrap JS (optional if you use modals, dropdowns, etc.) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- Your custom JS file (if you create one) -->
+  <script src="script.js"></script>
+</body>
+</html>

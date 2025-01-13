@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chenmu Zhang</title>
+
+  <!-- Bootstrap CSS -->
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="bg-dark p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      
+      <!-- 1. "Chenmu Zhang" links to the current page (index.html, for example) 
+          2. Enhanced font size, color, and removed underline -->
+      <h1 class="m-0 fs-1 mb-2 lead">
+        <a href="index.html" class="text-decoration-none text-light">
+          Chenmu Zhang
+        </a>
+      </h1>
+
+      <!-- 2. Navigation links to other pages: research.html, publications.html, bio.html 
+          3. Adjusted font size (fs-5) and color (text-dark) -->
+      <nav>
+        <a href="index.html#R1" class="mx-2 text-decoration-none fs-5 text-light">
+          Research
+        </a>
+        <a href="publications.html" class="mx-2 text-decoration-none fs-5 text-light">
+          Publications
+        </a>
+        <a href="bio.html" class="mx-2 text-decoration-none fs-5 text-light">
+          Bio
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main class="container my-5">
+
+    <!-- Figure -->
+    <div class="row">
+      <div class="col-12 text-center mb-4">
+        <!-- Replace "images/e-ph1.png" with the actual image path -->
+        <img
+          src="images/e-d-si.png"
+          alt="Figure"
+          class="img-fluid"
+          style="max-width: 1000px;"
+        />
+      </div>
+    </div>
+  
+    <!-- Large Block of Text -->
+    <div class="row">
+      <div class="col-12 mb-4">
+        <h2 class="mb-3">Abstract</h2>
+        <p>
+          2D transition metal dichalcogenide (MX(2)) semiconductors are promising candidates for electronic and optoelectronic applications. However, they have relatively low charge carrier mobility at room temperature. Defects are important scattering sources, while their quantitative roles remain unclear. Here we employ first-principles methods to accurately calculate the scatterings by different types of defects (chalcogen vacancies, antisites, and oxygen substitutes) and the resulting carrier mobilities for various MX(2) (M = Mo/W and X = S/Se). We find that for the same X, WX(2) always has a higher mobility than MoX(2), regardless of defect type and carrier type. Further analyses attribute this to the universally weaker electron-defect coupling in WX(2). Moreover, we find filling the chalcogen vacancy with O always improves the mobility, while filling by a metal atom decreases the mobility except for WSe2. Finally, we identify the critical defect concentrations where the defect- and phonon-limited mobilities cross, providing guidelines for experimental optimization.
+        </p>
+      </div>
+    </div>
+  
+    <!-- Reference -->
+    <div class="row">
+      <div class="col-12">
+        <h3>Reference</h3>
+        <p>
+          [1]	Z. Xiao*, R. Guo, <u>C. Zhang</u>, and Y. Liu, Point Defect Limited Carrier Mobility in 2D Transition Metal Dichalcogenides. <u>ACS Nano 18, 8511 (2024)</u>.
+        </p>
+      </div>
+    </div>
+  
+  </main>
+  
+
+
+
+  <!-- FOOTER -->
+  <footer class="bg-light text-center py-3">
+    <p class="m-0">&copy; 2025 Powered by Chenmu</p>
+  </footer>
+
+  <!-- Bootstrap JS (optional if you use modals, dropdowns, etc.) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <!-- Your custom JS file (if you create one) -->
+  <script src="script.js"></script>
+</body>
+</html>

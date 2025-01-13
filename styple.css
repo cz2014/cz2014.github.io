@@ -1,0 +1,18 @@
+/* style.css */
+
+/* Adjust spacing or add custom styles if needed */
+
+.jump-links a {
+    font-weight: 500; /* Make the jump links a bit bolder */
+  }
+  
+  /* Example: add a smooth scroll effect for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Customize card text color if desired */
+  .card-text {
+    color: #333;
+  }
+  
