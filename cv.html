@@ -12,13 +12,22 @@ description: Curriculum Vitae of Chenmu Zhang.
       <p class="mb-4">
         <a href="Chenmu_CV.pdf" target="_blank" class="text-decoration-underline">Download PDF</a>
       </p>
-      <embed
-        src="Chenmu_CV.pdf"
-        type="application/pdf"
-        width="100%"
-        height="800px"
-        style="border: 1px solid #e5e7eb; border-radius: 4px;"
-      />
+      <!-- Desktop: embedded PDF viewer -->
+      <div class="d-none d-md-block">
+        <embed
+          src="Chenmu_CV.pdf"
+          type="application/pdf"
+          width="100%"
+          height="800px"
+          style="border: 1px solid #e5e7eb; border-radius: 4px;"
+        />
+      </div>
+      <!-- Mobile: download prompt (embed doesn't render well on iOS Safari) -->
+      <div class="d-md-none">
+        <p class="section-subtext">
+          PDF viewer is not available on mobile. Please use the download link above.
+        </p>
+      </div>
     </div>
   </div>
 
