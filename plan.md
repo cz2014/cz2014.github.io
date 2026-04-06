@@ -183,56 +183,42 @@ Ultra-minimal. No sections, no headings for categories. Just a clean grid of pro
 
 ## Implementation Steps
 
-### Step 1: Prepare shared assets
-- Create `style-explore.css` with the new typography, color palette, and shared styles for all 3 variants
-- Load Inter font from Google Fonts CDN in the layout (or a variant-specific head block)
-- Add MatClaw arXiv paper to `_data/publications.yml`
-- Create a placeholder image or card design for MatClaw (no figure available yet)
+### Step 1: Prepare shared assets -- COMPLETED
+- Created `style-explore.css` with Inter font, new color palette (#1a1a1a/#6b7280/#2563eb), card styles, pill links, responsive breakpoints
+- Created `_layouts/explore.html` loading Inter from Google Fonts CDN
+- Added MatClaw paper [14] to `_data/publications.yml`
+- Compressed `images/matclaw.png` (486 KB -> 84 KB)
 
-### Step 2: Build Variant A (`index-a.html`)
-- Hero section with name, title, one-line identity
-- Two-column grid: AI pillar (left) and physics pillar (right)
-- AI pillar: MatClaw description + links
-- Physics pillar: 4 compact cards linking to detail pages
-- Use new CSS for typography and spacing
+### Step 2: Build Variant A (`index-a.html`) -- COMPLETED
+- Hero with name, subtitle, one-line identity statement
+- Two-column layout: AI pillar (MatClaw card + links) and Physics pillar (4 compact cards)
 
-### Step 3: Build Variant B (`index-b.html`)
-- Hero with name and title
-- Full-width AI section with statement, description, and figure placeholder
-- Physics section below with framing text and 4 cards
-- Use new CSS
+### Step 3: Build Variant B (`index-b.html`) -- COMPLETED
+- Hero with name and subtitle
+- Full-width AI section: large statement, two-column description + figure, pill links
+- Physics section below with framing text ("Grounded in first-principles physics") and 4 cards in a row
 
-### Step 4: Build Variant C (`index-c.html`)
-- Minimal hero: name + one line
-- Grid of 5 project cards (MatClaw featured, then R1-R4)
-- Cards are image + title + subtitle, clickable
-- Use new CSS
+### Step 4: Build Variant C (`index-c.html`) -- COMPLETED
+- Minimal hero: name + one-line statement
+- Featured full-width MatClaw card with pill links
+- 4 physics cards in a 2x2 / 4-column responsive grid
 
-### Step 5: Preview
-- Run `jekyll serve`
-- Open `localhost:4000/index-a.html`, `index-b.html`, `index-c.html`
-- Compare side by side
+### Step 5: Preview -- COMPLETED
+- Jekyll server running at localhost:4000
+- All 3 variants verified serving (HTTP 200)
+- Opened in browser for side-by-side comparison
 
-### Step 6: Decision
+### Step 6: Decision -- PENDING
 - Pick one variant (or mix elements from multiple)
 - Refine on the `explore` branch
 - When satisfied, merge back to `dev`
 
 ---
 
-## What Will NOT Change (in this exploration)
+## What Did NOT Change
 
 - Research detail pages (e-ph1, e-s1, etc.) -- unchanged
-- Publications page -- unchanged (except adding the new paper)
-- Bio page -- unchanged for now
+- Publications page -- unchanged (new paper added to data only)
+- Bio page -- unchanged
 - Navbar structure (links to Research, Publications, Bio)
 - The existing `index.html` remains untouched -- variants are separate files
-
-## Open Questions
-
-1. **MatClaw figure:** Do you have a schematic, architecture diagram, or figure from the paper we can use? If not, I'll create a clean text-based card as a placeholder.
-2. **Identity line:** What do you want visitors to understand about you in the first 5 seconds? Some options:
-   - "Building AI systems for computational materials science"
-   - "AI + physics at the intersection of language models and materials"
-   - "From first-principles physics to autonomous research agents"
-   - Or you can pick after seeing the variants in context.
