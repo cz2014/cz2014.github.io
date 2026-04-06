@@ -4,60 +4,54 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal academic website for Chenmu Zhang (condensed matter physics researcher, postdoc at Rice University). The site is hosted via GitHub Pages at `cz2014/cz2014.github.io` with a custom domain `www.chenmuzhang.com` (configured via the `CNAME` file).
+Personal academic website for Chenmu Zhang (postdoc at Rice University, building AI agents for computational materials science). Hosted via GitHub Pages at `cz2014/cz2014.github.io` with custom domain `www.chenmuzhang.com` (configured via `CNAME` file).
 
-## Deployment
+## Build & Preview
 
-There is no build step. Push to `main` branch and GitHub Pages deploys automatically. The site is plain HTML/CSS/JS with no bundler, framework, or static site generator.
+Jekyll static site generator. GitHub Pages builds automatically on push to `main`.
 
-To preview locally, open any `.html` file in a browser or use a local server:
+To preview locally:
 ```
-python3 -m http.server 8000
+export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/4.0.0/bin:$HOME/.gem/ruby/4.0.0/bin:$PATH"
+bundle exec jekyll serve
 ```
 
 ## Architecture
 
-**Static site with Bootstrap 5.3 (CDN-loaded).** All pages share the same structure:
-- Dark navbar header with three links: Research, Publications, Bio
-- Bootstrap container for main content
-- Light footer
-- `script.js` and CDN Bootstrap JS loaded at bottom
+**Jekyll + Bootstrap 5.3 (CDN) + Inter font (Google Fonts).**
 
-The navbar HTML is duplicated in every page (no templating system). When modifying the navbar, update it in all HTML files.
+### Layouts (`_layouts/`)
 
-### Page Map
+- `default.html` -- Base layout for all pages. Dark navbar ("Chenmu" as home link), three nav links (Research, Publications, Bio), light footer. Loads Inter font, Bootstrap CSS/JS, and `style.css`.
+- `research-detail.html` -- Extends default. For research detail pages. Takes `figure`, `figure_alt`, `references` from frontmatter; content becomes the abstract.
+
+### Pages
 
 | File | Purpose |
 |---|---|
-| `index.html` | Homepage/Research page. Hero section with interactive figure (hover to swap images), then research cards organized in 4 sections (R1-R4) |
-| `publications.html` | Numbered publication list with DOI links. References are manually numbered [1]-[13] |
-| `bio.html` | Biography with photo and CV link |
-| `e-ph1.html`, `e-ph2.html`, `e-s1.html`, `e-s2.html`, `e-eps.html`, `e-d.html` | Individual research detail pages (figure + abstract + references). Linked from index.html research cards |
-| `tmp.html` | Template/scratch page for new research detail pages |
+| `index.html` | Homepage. Hero name + subtitle, AI section (MatClaw description + figure + paper/GitHub links), physics foundation section (4 project cards) |
+| `publications.html` | Auto-generated from `_data/publications.yml` via Liquid loop. 14 papers with DOI links |
+| `bio.html` | Photo, bio text, links to CV page and GitHub |
+| `cv.html` | Embedded PDF viewer (`<embed>`) for `Chenmu_CV.pdf` + download link |
+| `e-ph1.html`, `e-ph2.html`, `e-s1.html`, `e-s2.html`, `e-eps.html`, `e-d.html` | Research detail pages (research-detail layout) |
 
-### Key Conventions
+### Styling
 
-- **CSS file** is `styple.css` (note the typo) but `index.html` references `style.css` -- the actual loaded file name varies by page. Check the `<link>` tag in each page.
-- **Image naming**: Research card thumbnails are `images/e-{topic}.png`, detail page figures are `images/e-{topic}-si.png`
-- **Interactive hero** on index.html: `script.js` swaps `#main-figure` src on hover via inline `onmouseover`/`onmouseout` handlers
-- **No CSS framework customization** -- styling relies almost entirely on Bootstrap utility classes inline in HTML
-- **Publications** are manually maintained HTML, not generated from BibTeX
+- `style.css` -- Design system: typography scale (`.hero-name`, `.hero-subtitle`, `.section-heading`, `.section-subtext`), project cards (`.project-card`), pill links (`.pill-link`), spacing helpers, responsive breakpoints
+- Color palette: `#1a1a1a` (text), `#6b7280` (secondary), `#2563eb` (accent), `#e5e7eb` (borders)
 
-### Research Sections (index.html)
+### Data
 
-- R1: Electron-phonon (e-ph1, e-ph2)
-- R2: Electron-boundary (e-s1, e-s2)
-- R3: Electron-environment (e-eps)
-- R4: Electron-defect (e-d)
+- `_data/publications.yml` -- Structured publication entries (number, authors, title, journal, volume, issue, pages, year, doi)
 
 ## Git Workflow
 
-- Use the `dev` branch for local development. Merge to `main` only when ready to deploy.
-- This `CLAUDE.md` file must stay on `dev` only -- do not merge it into `main`.
+- Use `dev` branch for development. Merge to `main` only when ready to deploy.
+- `CLAUDE.md`, `plan.md`, `research.md` are in `_config.yml` exclude list (won't appear on live site).
 - All commits must be authored by `cz2014` only. Do not add Co-Authored-By lines.
 
 ## Important Notes
 
-- The `CNAME` file must remain as `www.chenmuzhang.com` for custom domain to work
-- `Chenmu_CV.pdf` is linked from `bio.html` -- replace the file to update the CV
-- There are no tests, linters, or CI pipelines
+- `CNAME` file must remain as `www.chenmuzhang.com`
+- Replace `Chenmu_CV.pdf` to update the CV (embedded viewer on cv.html will reflect changes automatically)
+- No tests, linters, or CI pipelines
