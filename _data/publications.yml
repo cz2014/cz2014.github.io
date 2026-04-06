@@ -1,3 +1,13 @@
+- number: 14
+  authors: '<u>C. Zhang</u>* and B. I. Yakobson'
+  title: "MatClaw: An Autonomous Code-First LLM Agent for End-to-End Materials Exploration"
+  journal: "arXiv preprint arXiv:2604.02688"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2026
+  doi: "https://doi.org/10.48550/arXiv.2604.02688"
+
 - number: 13
   authors: '<u>C. Zhang</u>*, Z. Xiao, R. Paddock, M. Cullinan, M. Tehrani, and Y. Liu'
   title: "Effects of Graphene Doping on the Electrical Conductivity of Copper"
