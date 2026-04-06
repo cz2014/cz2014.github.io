@@ -1,257 +1,238 @@
-# Implementation Plan
+# Homepage Redesign Plan
 
-All work happens on the `dev` branch. Merge to `main` only when verified. Visual design stays unchanged.
+## Goal
+
+Redesign the homepage to reflect Chenmu's research transition from first-principles electron transport to AI agents for materials science. Produce 3 concrete, renderable homepage variants for comparison.
+
+## Design Principles
+
+Inspired by early Apple and intentional minimalism:
+- **Content is the design.** No decorative elements, gradients, or visual noise.
+- **Deliberate typography.** One clean sans-serif font (Inter or system font stack), carefully chosen sizes and weights to create hierarchy without clutter.
+- **Generous whitespace.** Let elements breathe. Spacing communicates structure.
+- **Restrained color.** Near-black text on white. One subtle accent color at most. No colored backgrounds except the navbar.
+- **Nothing unnecessary.** Every element earns its place. If removing something doesn't hurt, remove it.
+
+The difference from the current site: the current site is simple by omission (Bootstrap defaults). The new design will be simple by intention (every choice is deliberate).
 
 ---
 
-## Phase 1: Migrate to Jekyll (keep same design)
+## Shared Elements (All 3 Variants)
 
-Jekyll uses a `_layouts` folder for templates and optional `_data` folder for structured data. GitHub Pages builds it automatically -- no local build step required, though `jekyll serve` can be used for local preview.
+### Navbar
+Keep the current dark navbar with hamburger menu. It works, it's clean, and consistency across pages matters more than novelty here. The existing research detail pages, publications, and bio pages remain unchanged.
 
-### Step 1.1: Create Jekyll project structure
+### Typography
+- Headings: Inter (loaded from Google Fonts CDN) or system sans-serif, varying weights
+- Body: same font, regular weight, ~18px for comfortable reading
+- No bold colors, no decorative fonts
 
-Create these new files/folders:
+### Color Palette
+- Background: `#ffffff`
+- Primary text: `#1a1a1a` (near-black, softer than pure black)
+- Secondary text: `#6b7280` (muted gray for descriptions)
+- Accent: `#2563eb` (a restrained blue, used sparingly for links or one highlight)
+- Cards/sections: `#f9fafb` (barely-there gray for subtle section separation)
+
+### Footer
+Same as current (light background, dynamic year).
+
+### Content Needed for All Variants
+
+**AI section content:**
+- Headline: something like "AI Agents for Materials Science"
+- One-paragraph description of MatClaw and the research vision
+- A figure/image representing MatClaw (we may need a placeholder or schematic -- will use a clean text-based card if no image is available yet)
+- Links: arXiv paper, GitHub repo
+
+**Physics section content:**
+- Brief framing text (1-2 sentences positioning this as foundational work)
+- The existing 4 research themes (R1-R4) condensed into cards or a compact list
+- Links to existing detail pages
+
+**New publication:**
+- arXiv:2604.02688 added to `_data/publications.yml`
+
+---
+
+## Variant A: "Two Pillars"
+
+### Concept
+Two parallel research directions presented as equal pillars. The message: "I work at the intersection of AI and materials physics."
+
+### Layout (top to bottom)
 
 ```
-_config.yml              <-- site-wide settings (title, url, description)
-_layouts/
-  default.html           <-- shared shell: <head>, navbar, footer, scripts
-  research-detail.html   <-- layout for the 6 research detail pages (e-ph1, e-s1, etc.)
-_data/
-  publications.yml       <-- structured publication data (replaces hand-written HTML list)
-Gemfile                  <-- Jekyll dependency (for optional local preview)
+[Navbar]
+
+[Hero]
+  Chenmu Zhang                          (large, left-aligned)
+  Postdoctoral Researcher, Rice University   (smaller, muted)
+  
+  A one-sentence research identity spanning both fields, e.g.:
+  "I build AI systems for materials science, grounded in
+   first-principles physics."
+
+[Two-column section]
+  Left column:                    Right column:
+  "AI for Materials Science"      "Electron Transport"
+  (heading)                       (heading)
+  
+  MatClaw card/description        Compact cards for R1-R4
+  with paper + GitHub links       linking to existing detail pages
+
+[Footer]
 ```
 
-### Step 1.2: Extract the shared layout (`_layouts/default.html`)
+### Character
+- Balanced, academic
+- Says "I am equally serious about both directions"
+- Clean two-column grid with clear visual parity
 
-Take the common parts from every page:
-- `<head>` block (charset, viewport, Bootstrap CDN, custom CSS link, page-specific `<title>`)
-- Navbar `<header>` block
-- Footer `<footer>` block
-- Bottom scripts (Bootstrap JS, script.js)
-
-Wrap them around a `{{ content }}` placeholder. The layout will accept `title` and `description` from each page's frontmatter for SEO (see Phase 4).
-
-### Step 1.3: Create the research detail layout (`_layouts/research-detail.html`)
-
-The 6 research detail pages (e-ph1, e-ph2, e-s1, e-s2, e-eps, e-d) share identical structure:
-- Full-width figure
-- Abstract heading + text
-- Reference heading + text
-
-Create a layout that takes `figure`, `abstract`, and `references` from frontmatter or content, so each research page becomes a short Markdown/HTML file instead of a full page with duplicated navbar/footer.
-
-### Step 1.4: Convert existing pages to use layouts
-
-Each page gets stripped down to just its unique content, with a YAML frontmatter header. Example for `publications.html`:
-
-```yaml
----
-layout: default
-title: Chenmu Zhang - Publications
-description: Publication list of Chenmu Zhang, condensed matter physics.
----
-
-<!-- only the <main> content goes here -->
-```
-
-Pages to convert:
-- `index.html` -> uses `default` layout, keeps all research card HTML as content
-- `publications.html` -> uses `default` layout (or auto-generates from `_data/publications.yml` -- see Step 1.5)
-- `bio.html` -> uses `default` layout
-- `e-ph1.html` -> uses `research-detail` layout
-- `e-ph2.html` -> uses `research-detail` layout
-- `e-s1.html` -> uses `research-detail` layout
-- `e-s2.html` -> uses `research-detail` layout
-- `e-eps.html` -> uses `research-detail` layout
-- `e-d.html` -> uses `research-detail` layout
-
-### Step 1.5: Publications as structured data (optional but recommended)
-
-Create `_data/publications.yml` with each paper as an entry:
-
-```yaml
-- number: 13
-  authors: "<u>C. Zhang</u>*, Z. Xiao, R. Paddock, M. Cullinan, M. Tehrani, and Y. Liu"
-  title: "Effects of Graphene Doping on the Electrical Conductivity of Copper"
-  journal: "Advanced Functional Materials"
-  volume: "34"
-  issue: "45"
-  pages: "2407569"
-  year: 2024
-  doi: "https://doi.org/10.1002/adfm.202407569"
-```
-
-Then `publications.html` uses a Liquid loop to render the list automatically. Adding a new paper = adding a YAML entry. No HTML editing needed.
-
-### Step 1.6: Create `_config.yml`
-
-```yaml
-title: Chenmu Zhang
-url: https://www.chenmuzhang.com
-description: Personal website of Chenmu Zhang
-markdown: kramdown
-exclude:
-  - CLAUDE.md
-  - research.md
-  - plan.md
-  - Gemfile
-  - Gemfile.lock
-  - README.md
-```
-
-The `exclude` list keeps dev-only files out of the built site. This replaces the need to manually avoid merging CLAUDE.md -- Jekyll simply won't include it in the output even on `main`.
-
-**Important note:** With the `exclude` list in `_config.yml`, `CLAUDE.md` will not appear on the live site even if it's on `main`. However, we will still keep it on `dev` only as a preference.
-
-### Step 1.7: Delete `tmp.html`
-
-Remove the placeholder page with lorem ipsum content.
+### File
+`index-a.html`
 
 ---
 
-## Phase 2: Fix CSS filename bug
+## Variant B: "Lead with AI, Physics Below"
 
-Rename `styple.css` to `style.css` so the `<link>` tag in the layout actually loads it. Since we'll have a single layout file after Phase 1, this only needs to be correct in one place.
+### Concept
+AI research is the headline act. Physics is presented as "the foundation" -- substantial and important, but clearly positioned as what gave rise to the current direction. A narrative arc.
 
----
-
-## Phase 3: Compress images
-
-### Step 3.1: Resize images
-
-Detail page images (`*-si.png`) display at `max-width: 1000px`. Resize to max 2000px wide (for retina) if they are larger.
-
-Card thumbnails display at 400px wide. Resize to max 800px wide.
-
-### Step 3.2: Compress PNGs
-
-Use `pngquant` or `optipng` to compress all PNG files. Target: every image under 200 KB.
-
-Alternatively, convert to WebP for better compression. However, since the current HTML uses `.png` extensions everywhere, and WebP requires either renaming files + updating references or using `<picture>` tags with fallbacks, the simplest approach is to keep PNG format but compress aggressively.
-
-### Expected results
-
-| File | Current | Target |
-|---|---|---|
-| e-s2-si.png | 2.4 MB | < 200 KB |
-| e-s1-si.png | 1.9 MB | < 200 KB |
-| e-eps-si.png | 1.8 MB | < 200 KB |
-| e-ph2-si.png | 1.3 MB | < 200 KB |
-| e-eps.png | 694 KB | < 150 KB |
-| e-ph1-si.png | 657 KB | < 150 KB |
-| Others | < 450 KB | < 100 KB |
-
----
-
-## Phase 4: SEO -- page-specific titles and meta descriptions
-
-With Jekyll layouts in place, each page sets its own `title` and `description` in frontmatter. The layout template renders them:
-
-```html
-<title>{{ page.title | default: site.title }}</title>
-<meta name="description" content="{{ page.description | default: site.description }}">
-```
-
-### Titles per page
-
-| Page | Title |
-|---|---|
-| index.html | Chenmu Zhang - Research |
-| publications.html | Chenmu Zhang - Publications |
-| bio.html | Chenmu Zhang - Bio |
-| e-ph1.html | Chenmu Zhang - Phonon-limited Transport: Quadrupole Scattering |
-| e-ph2.html | Chenmu Zhang - High-Mobility 2D Semiconductors |
-| e-s1.html | Chenmu Zhang - Electron-Surface Scattering |
-| e-s2.html | Chenmu Zhang - Graphene-Copper Conductivity |
-| e-eps.html | Chenmu Zhang - Dielectric Screening in vdW Heterostructures |
-| e-d.html | Chenmu Zhang - Electron-Defect Scattering in TMDCs |
-
----
-
-## Phase 5: Fix mobile responsiveness
-
-### Step 5.1: Responsive navbar with hamburger menu
-
-Replace the current `<header>` with Bootstrap's responsive navbar component (`navbar-expand-md` + `navbar-toggler`). This collapses the nav links into a hamburger menu on screens below `md` (768px). Same dark background, same link text -- just wrapped in Bootstrap's responsive navbar markup.
-
-### Step 5.2: Responsive research cards
-
-Replace fixed inline styles `style="width: 400px; height: 400px;"` with Bootstrap responsive classes. The cards should:
-- Fill the available column width on all screen sizes
-- Use `img-fluid` (already present) for image scaling
-- Let height be determined by content rather than fixed at 400px, or use a responsive max-height
-
-### Step 5.3: Touch-friendly hero interaction
-
-The hover-to-swap-image interaction on the homepage doesn't work on touch devices. Add a touch/click fallback:
-- On mobile, tapping a research topic swaps the image (same as hover on desktop)
-- Tapping again or tapping another topic switches to that image
-- This can be done by adding `click` event listeners alongside the existing `mouseover`/`mouseout` handlers in `script.js`
-
-### Step 5.4: Fix bio page excess spacing
-
-Remove the three empty `<div class="my-4 py-5"></div>` blocks at the bottom of `bio.html`.
-
----
-
-## Phase 6: Dynamic footer year
-
-In the layout template, replace the hardcoded year with JavaScript:
-
-```html
-<footer class="bg-light text-center py-3">
-  <p class="m-0">&copy; <script>document.write(new Date().getFullYear())</script> Powered by Chenmu</p>
-</footer>
-```
-
-Alternatively, use Jekyll's Liquid: `{{ site.time | date: '%Y' }}` which resolves at build time (updates on each deploy).
-
----
-
-## Execution Order
-
-The phases have dependencies:
+### Layout (top to bottom)
 
 ```
-Phase 1 (Jekyll migration)  -- must be first, since it creates the layout files
-  |
-  +-- Phase 2 (CSS fix)     -- trivial, done during layout creation
-  |
-  +-- Phase 6 (footer year) -- done in the layout template
-  |
-Phase 3 (compress images)   -- independent, can be done in parallel with Phase 1
-  |
-Phase 4 (SEO meta tags)     -- requires Phase 1 (needs layout template in place)
-  |
-Phase 5 (mobile fixes)      -- requires Phase 1 (navbar changes go in layout)
+[Navbar]
+
+[Hero]
+  Chenmu Zhang                          (large, left-aligned)
+  Postdoctoral Researcher, Rice University
+
+[AI Section -- full width, prominent]
+  "Building autonomous agents for
+   computational materials science"      (large statement)
+  
+  2-column:
+    Left: description paragraph          Right: MatClaw figure/schematic
+    explaining the vision, what              or a clean placeholder
+    MatClaw does, why it matters
+  
+  Links: arXiv paper | GitHub | ...
+
+[Divider or spacing]
+
+[Physics Section -- "Grounded in first-principles physics"]
+  Brief framing: "This work builds on years of first-principles
+  research in electron transport..."
+  
+  Row of 4 compact cards (R1-R4), same images as current site,
+  linking to existing detail pages
+
+[Footer]
 ```
 
-**Suggested order:**
-1. Phase 1 + Phase 2 + Phase 6 together (all involve the layout/template work)
-2. Phase 3 (image compression)
-3. Phase 4 (SEO frontmatter)
-4. Phase 5 (mobile responsiveness)
-5. Test locally with `jekyll serve`
-6. Verify visual design is unchanged on desktop
-7. Verify mobile experience
+### Character
+- Forward-looking, narrative-driven
+- Clear signal: "AI is where I'm headed"
+- Physics section feels like a strong foundation, not an afterthought
+
+### File
+`index-b.html`
 
 ---
 
-## What will NOT change
+## Variant C: "Minimal Portfolio"
 
-- Overall visual design (dark navbar, white content, light footer, Bootstrap styling)
-- Page URLs (all existing URLs stay the same)
-- Research card layout and interactive hero concept
-- Publication content and numbering
-- Bio content and photo
-- Custom domain (CNAME stays)
-- No contact info added (email remains in CV only)
-- No homepage intro added
+### Concept
+Ultra-minimal. No sections, no headings for categories. Just a clean grid of project cards, ordered by importance (AI first, physics after). The design does the talking -- larger or more prominent cards for primary work.
 
-## What will be different for the author
+### Layout (top to bottom)
 
-- Adding a new page: create a file with frontmatter `layout: default`, write only the content
-- Adding a publication: add an entry to `_data/publications.yml`
-- Changing the navbar: edit `_layouts/default.html` once (applies to all pages)
-- Local preview: `bundle exec jekyll serve` (optional -- GitHub builds automatically on push)
+```
+[Navbar]
+
+[Hero -- very minimal]
+  Chenmu Zhang                          (large)
+  Computational materials science       (one line, muted)
+  through AI and first-principles physics
+
+[Project Grid -- 2 or 3 columns]
+  [MatClaw card]        [e-ph card]        [e-boundary card]
+  (larger or            (standard)         (standard)
+   featured)
+  
+  [e-environment card]  [e-defect card]
+  (standard)            (standard)
+
+  Each card: image thumbnail + one-line title + one-line subtitle
+  Click goes to detail page
+
+[Footer]
+```
+
+### Character
+- Most Apple-like: minimal text, visual grid, trust the reader to click
+- No narrative framing -- the ordering and visual weight communicate priority
+- Feels like a portfolio or product page rather than an academic site
+- Risk: may feel too sparse for an academic audience expecting descriptions
+
+### File
+`index-c.html`
+
+---
+
+## Implementation Steps
+
+### Step 1: Prepare shared assets
+- Create `style-explore.css` with the new typography, color palette, and shared styles for all 3 variants
+- Load Inter font from Google Fonts CDN in the layout (or a variant-specific head block)
+- Add MatClaw arXiv paper to `_data/publications.yml`
+- Create a placeholder image or card design for MatClaw (no figure available yet)
+
+### Step 2: Build Variant A (`index-a.html`)
+- Hero section with name, title, one-line identity
+- Two-column grid: AI pillar (left) and physics pillar (right)
+- AI pillar: MatClaw description + links
+- Physics pillar: 4 compact cards linking to detail pages
+- Use new CSS for typography and spacing
+
+### Step 3: Build Variant B (`index-b.html`)
+- Hero with name and title
+- Full-width AI section with statement, description, and figure placeholder
+- Physics section below with framing text and 4 cards
+- Use new CSS
+
+### Step 4: Build Variant C (`index-c.html`)
+- Minimal hero: name + one line
+- Grid of 5 project cards (MatClaw featured, then R1-R4)
+- Cards are image + title + subtitle, clickable
+- Use new CSS
+
+### Step 5: Preview
+- Run `jekyll serve`
+- Open `localhost:4000/index-a.html`, `index-b.html`, `index-c.html`
+- Compare side by side
+
+### Step 6: Decision
+- Pick one variant (or mix elements from multiple)
+- Refine on the `explore` branch
+- When satisfied, merge back to `dev`
+
+---
+
+## What Will NOT Change (in this exploration)
+
+- Research detail pages (e-ph1, e-s1, etc.) -- unchanged
+- Publications page -- unchanged (except adding the new paper)
+- Bio page -- unchanged for now
+- Navbar structure (links to Research, Publications, Bio)
+- The existing `index.html` remains untouched -- variants are separate files
+
+## Open Questions
+
+1. **MatClaw figure:** Do you have a schematic, architecture diagram, or figure from the paper we can use? If not, I'll create a clean text-based card as a placeholder.
+2. **Identity line:** What do you want visitors to understand about you in the first 5 seconds? Some options:
+   - "Building AI systems for computational materials science"
+   - "AI + physics at the intersection of language models and materials"
+   - "From first-principles physics to autonomous research agents"
+   - Or you can pick after seeing the variants in context.
