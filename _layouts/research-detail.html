@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<main class="container my-5">
+
+  <!-- Figure -->
+  <div class="row">
+    <div class="col-12 text-center mb-4">
+      <img
+        src="{{ page.figure }}"
+        alt="{{ page.figure_alt | default: 'Research figure' }}"
+        class="img-fluid"
+        style="max-width: 1000px;"
+      />
+    </div>
+  </div>
+
+  <!-- Abstract -->
+  <div class="row">
+    <div class="col-12 mb-4">
+      <h2 class="mb-3">Abstract</h2>
+      {{ content }}
+    </div>
+  </div>
+
+  <!-- References -->
+  <div class="row">
+    <div class="col-12">
+      <h3>Reference</h3>
+      {% for ref in page.references %}
+      <p>{{ ref }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
+</main>

@@ -1,0 +1,129 @@
+- number: 13
+  authors: '<u>C. Zhang</u>*, Z. Xiao, R. Paddock, M. Cullinan, M. Tehrani, and Y. Liu'
+  title: "Effects of Graphene Doping on the Electrical Conductivity of Copper"
+  journal: "Advanced Functional Materials"
+  volume: "34"
+  issue: "45"
+  pages: "2407569"
+  year: 2024
+  doi: "https://doi.org/10.1002/adfm.202407569"
+
+- number: 12
+  authors: '<u>C. Zhang</u>* and Y. Liu'
+  title: "Electron-Surface Scattering from First-Principles"
+  journal: "ACS Nano"
+  volume: "18"
+  issue: "40"
+  pages: "27433--27439"
+  year: 2024
+  doi: "https://doi.org/10.1021/acsnano.4c07698"
+
+- number: 11
+  authors: '<u>C. Zhang</u>* and Y. Liu'
+  title: "Two-dimensional Semiconductor Computational Carrier Mobility Genome"
+  journal: "arXiv preprint arXiv:2404.08117"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2024
+  doi: "https://doi.org/10.48550/arXiv.2404.08117"
+
+- number: 10
+  authors: '<u>C. Zhang</u>* and Y. Liu'
+  title: "Fröhlich Scattering and Mobility of 2D Semiconductors in van der Waals Heterostructure"
+  journal: "arXiv preprint arXiv:2404.08114"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2024
+  doi: "https://doi.org/10.48550/arXiv.2404.08114"
+
+- number: 9
+  authors: 'Z. Xiao*, R. Guo, <u>C. Zhang</u>, and Y. Liu'
+  title: "Point Defect Limited Carrier Mobility in 2D Transition Metal Dichalcogenides"
+  journal: "ACS Nano"
+  volume: "18"
+  issue: "11"
+  pages: "8511--8516"
+  year: 2024
+  doi: "https://doi.org/10.1021/acsnano.4c01033"
+
+- number: 8
+  authors: '<u>C. Zhang</u>*, R. Wang, H. Mishra, and Y. Liu'
+  title: "Two-dimensional Semiconductors with High Intrinsic Carrier Mobility at Room Temperature"
+  journal: "Physical Review Letters"
+  volume: "130"
+  issue: "8"
+  pages: "087001"
+  year: 2023
+  doi: "https://doi.org/10.1103/PhysRevLett.130.087001"
+
+- number: 7
+  authors: '<u>C. Zhang</u>* and Y. Liu'
+  title: "Phonon-limited Transport of Two-dimensional Semiconductors: Quadrupole Scattering and Free Carrier Screening"
+  journal: "Physical Review B"
+  volume: "106"
+  issue: "11"
+  pages: "115423"
+  year: 2022
+  doi: "https://doi.org/10.1103/PhysRevB.106.115423"
+
+- number: 6
+  authors: 'L. Cheng*, <u>C. Zhang</u>, and Y. Liu'
+  title: "Intrinsic Charge Carrier Mobility of 2D Semiconductors"
+  journal: "Computational Materials Science"
+  volume: "194"
+  issue: ""
+  pages: "110468"
+  year: 2021
+  doi: "https://doi.org/10.1016/j.commatsci.2021.110468"
+
+- number: 5
+  authors: '<u>C. Zhang</u>*, L. Cheng, and Y. Liu'
+  title: "Role of Flexural Phonons in Carrier Mobility of Two-dimensional Semiconductors: Free Standing vs On Substrate"
+  journal: "Journal of Physics: Condensed Matter"
+  volume: "33"
+  issue: "23"
+  pages: "234003"
+  year: 2021
+  doi: "https://doi.org/10.1088/1361-648X/abe8fa"
+
+- number: 4
+  authors: 'L. Cheng*, <u>C. Zhang</u>, and Y. Liu'
+  title: "Why Two-dimensional Semiconductors Generally Have Low Electron Mobility"
+  journal: "Physical Review Letters"
+  volume: "125"
+  issue: "17"
+  pages: "177701"
+  year: 2020
+  doi: "https://doi.org/10.1103/PhysRevLett.125.177701"
+
+- number: 3
+  authors: '<u>C. Zhang</u>*, L. Cheng, and Y. Liu'
+  title: "Understanding High-field Electron Transport Properties and Strain Effects of Monolayer Transition Metal Dichalcogenides"
+  journal: "Physical Review B"
+  volume: "102"
+  issue: "11"
+  pages: "115405"
+  year: 2020
+  doi: "https://doi.org/10.1103/PhysRevB.102.115405"
+
+- number: 2
+  authors: 'L. Cheng*, <u>C. Zhang</u>, and Y. Liu'
+  title: "The Optimal Electronic Structure for High-mobility 2D Semiconductors: Exceptionally High Hole Mobility in 2D Antimony"
+  journal: "Journal of the American Chemical Society"
+  volume: "141"
+  issue: "41"
+  pages: "16296--16302"
+  year: 2019
+  doi: "https://doi.org/10.1021/jacs.9b05923"
+
+- number: 1
+  authors: 'L. Cheng*, <u>C. Zhang</u>, and Y. Liu'
+  title: "How to Resolve a Phonon-associated Property into Contributions of Basic Phonon Modes"
+  journal: "Journal of Physics: Materials"
+  volume: "2"
+  issue: "4"
+  pages: "045005"
+  year: 2019
+  doi: "https://doi.org/10.1088/2515-7639/ab2b7c"

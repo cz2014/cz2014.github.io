@@ -1,0 +1,12 @@
+title: Chenmu Zhang
+url: https://www.chenmuzhang.com
+description: Personal website of Chenmu Zhang - condensed matter physics researcher
+markdown: kramdown
+
+exclude:
+  - CLAUDE.md
+  - research.md
+  - plan.md
+  - Gemfile
+  - Gemfile.lock
+  - README.md

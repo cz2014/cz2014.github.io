@@ -3,21 +3,33 @@ let mouseOutTimer = null;
 
 // Immediately swap image on hover
 function showImageOnHover(hoverSrc) {
-  // 1. Clear any existing timer so we don't revert while hovering quickly between items
+  // Clear any existing timer so we don't revert while hovering quickly between items
   if (mouseOutTimer) {
     clearTimeout(mouseOutTimer);
     mouseOutTimer = null;
   }
-  
-  // 2. Immediately set the figure to the hovered image
-  document.getElementById('main-figure').src = hoverSrc;
+
+  // Immediately set the figure to the hovered image
+  const fig = document.getElementById('main-figure');
+  if (fig) fig.src = hoverSrc;
 }
 
-// Delay revert by 0.5 s
+// Delay revert by 100ms
 function revertImage(defaultSrc) {
-  // 1. Set a timer to revert after 500ms
   mouseOutTimer = setTimeout(() => {
-    document.getElementById('main-figure').src = defaultSrc;
+    const fig = document.getElementById('main-figure');
+    if (fig) fig.src = defaultSrc;
     mouseOutTimer = null;
   }, 100);
 }
+
+// Touch support for mobile: tap to swap image
+document.addEventListener('DOMContentLoaded', function() {
+  var links = document.querySelectorAll('[onmouseover]');
+  links.forEach(function(link) {
+    link.addEventListener('touchstart', function(e) {
+      var hoverSrc = this.getAttribute('onmouseover').match(/'([^']+)'/);
+      if (hoverSrc) showImageOnHover(hoverSrc[1]);
+    }, {passive: true});
+  });
+});

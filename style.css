@@ -1,0 +1,20 @@
+/* style.css */
+
+.jump-links a {
+  font-weight: 500;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.card-text {
+  color: #333;
+}
+
+/* Responsive cards: fill column width on small screens */
+@media (max-width: 767.98px) {
+  .card {
+    max-width: 100% !important;
+  }
+}
