@@ -1,257 +1,158 @@
-# Implementation Plan
+# Implementation Plan: Variant B Refinement
 
-All work happens on the `dev` branch. Merge to `main` only when verified. Visual design stays unchanged.
+## Goal
 
----
+Refine Variant B ("Lead with AI, Physics Below") into the production homepage. Fix the visual design issues identified during evaluation. Update related pages (publications, bio) to reflect the research transition. Deploy to main.
 
-## Phase 1: Migrate to Jekyll (keep same design)
-
-Jekyll uses a `_layouts` folder for templates and optional `_data` folder for structured data. GitHub Pages builds it automatically -- no local build step required, though `jekyll serve` can be used for local preview.
-
-### Step 1.1: Create Jekyll project structure
-
-Create these new files/folders:
-
-```
-_config.yml              <-- site-wide settings (title, url, description)
-_layouts/
-  default.html           <-- shared shell: <head>, navbar, footer, scripts
-  research-detail.html   <-- layout for the 6 research detail pages (e-ph1, e-s1, etc.)
-_data/
-  publications.yml       <-- structured publication data (replaces hand-written HTML list)
-Gemfile                  <-- Jekyll dependency (for optional local preview)
-```
-
-### Step 1.2: Extract the shared layout (`_layouts/default.html`)
-
-Take the common parts from every page:
-- `<head>` block (charset, viewport, Bootstrap CDN, custom CSS link, page-specific `<title>`)
-- Navbar `<header>` block
-- Footer `<footer>` block
-- Bottom scripts (Bootstrap JS, script.js)
-
-Wrap them around a `{{ content }}` placeholder. The layout will accept `title` and `description` from each page's frontmatter for SEO (see Phase 4).
-
-### Step 1.3: Create the research detail layout (`_layouts/research-detail.html`)
-
-The 6 research detail pages (e-ph1, e-ph2, e-s1, e-s2, e-eps, e-d) share identical structure:
-- Full-width figure
-- Abstract heading + text
-- Reference heading + text
-
-Create a layout that takes `figure`, `abstract`, and `references` from frontmatter or content, so each research page becomes a short Markdown/HTML file instead of a full page with duplicated navbar/footer.
-
-### Step 1.4: Convert existing pages to use layouts
-
-Each page gets stripped down to just its unique content, with a YAML frontmatter header. Example for `publications.html`:
-
-```yaml
----
-layout: default
-title: Chenmu Zhang - Publications
-description: Publication list of Chenmu Zhang, condensed matter physics.
----
-
-<!-- only the <main> content goes here -->
-```
-
-Pages to convert:
-- `index.html` -> uses `default` layout, keeps all research card HTML as content
-- `publications.html` -> uses `default` layout (or auto-generates from `_data/publications.yml` -- see Step 1.5)
-- `bio.html` -> uses `default` layout
-- `e-ph1.html` -> uses `research-detail` layout
-- `e-ph2.html` -> uses `research-detail` layout
-- `e-s1.html` -> uses `research-detail` layout
-- `e-s2.html` -> uses `research-detail` layout
-- `e-eps.html` -> uses `research-detail` layout
-- `e-d.html` -> uses `research-detail` layout
-
-### Step 1.5: Publications as structured data (optional but recommended)
-
-Create `_data/publications.yml` with each paper as an entry:
-
-```yaml
-- number: 13
-  authors: "<u>C. Zhang</u>*, Z. Xiao, R. Paddock, M. Cullinan, M. Tehrani, and Y. Liu"
-  title: "Effects of Graphene Doping on the Electrical Conductivity of Copper"
-  journal: "Advanced Functional Materials"
-  volume: "34"
-  issue: "45"
-  pages: "2407569"
-  year: 2024
-  doi: "https://doi.org/10.1002/adfm.202407569"
-```
-
-Then `publications.html` uses a Liquid loop to render the list automatically. Adding a new paper = adding a YAML entry. No HTML editing needed.
-
-### Step 1.6: Create `_config.yml`
-
-```yaml
-title: Chenmu Zhang
-url: https://www.chenmuzhang.com
-description: Personal website of Chenmu Zhang
-markdown: kramdown
-exclude:
-  - CLAUDE.md
-  - research.md
-  - plan.md
-  - Gemfile
-  - Gemfile.lock
-  - README.md
-```
-
-The `exclude` list keeps dev-only files out of the built site. This replaces the need to manually avoid merging CLAUDE.md -- Jekyll simply won't include it in the output even on `main`.
-
-**Important note:** With the `exclude` list in `_config.yml`, `CLAUDE.md` will not appear on the live site even if it's on `main`. However, we will still keep it on `dev` only as a preference.
-
-### Step 1.7: Delete `tmp.html`
-
-Remove the placeholder page with lorem ipsum content.
+All work on the `dev` branch. Merge `explore` -> `dev` first to bring in the variant files, then refine.
 
 ---
 
-## Phase 2: Fix CSS filename bug
+## Phase 1: Merge explore into dev
 
-Rename `styple.css` to `style.css` so the `<link>` tag in the layout actually loads it. Since we'll have a single layout file after Phase 1, this only needs to be correct in one place.
+### Step 1.1: Merge the explore branch
+Merge `explore` into `dev` to bring in:
+- `_layouts/explore.html`
+- `style-explore.css`
+- `index-a.html`, `index-b.html`, `index-c.html`
+- `images/matclaw.png`
+- Updated `_data/publications.yml` (paper [14] added)
 
----
-
-## Phase 3: Compress images
-
-### Step 3.1: Resize images
-
-Detail page images (`*-si.png`) display at `max-width: 1000px`. Resize to max 2000px wide (for retina) if they are larger.
-
-Card thumbnails display at 400px wide. Resize to max 800px wide.
-
-### Step 3.2: Compress PNGs
-
-Use `pngquant` or `optipng` to compress all PNG files. Target: every image under 200 KB.
-
-Alternatively, convert to WebP for better compression. However, since the current HTML uses `.png` extensions everywhere, and WebP requires either renaming files + updating references or using `<picture>` tags with fallbacks, the simplest approach is to keep PNG format but compress aggressively.
-
-### Expected results
-
-| File | Current | Target |
-|---|---|---|
-| e-s2-si.png | 2.4 MB | < 200 KB |
-| e-s1-si.png | 1.9 MB | < 200 KB |
-| e-eps-si.png | 1.8 MB | < 200 KB |
-| e-ph2-si.png | 1.3 MB | < 200 KB |
-| e-eps.png | 694 KB | < 150 KB |
-| e-ph1-si.png | 657 KB | < 150 KB |
-| Others | < 450 KB | < 100 KB |
+### Step 1.2: Clean up unused variants
+Delete `index-a.html` and `index-c.html` (rejected variants). Keep `index-b.html` as the working file for now.
 
 ---
 
-## Phase 4: SEO -- page-specific titles and meta descriptions
+## Phase 2: Fix Variant B visual design issues
 
-With Jekyll layouts in place, each page sets its own `title` and `description` in frontmatter. The layout template renders them:
+### Step 2.1: Reduce vertical whitespace
+Tighten the three excessive gaps in `index-b.html`:
+- Hero to AI heading: reduce from ~100px to ~40px
+- AI section (pill links) to physics section: reduce from ~300px to ~80px
+- AI heading to text+figure row: reduce spacing
 
-```html
-<title>{{ page.title | default: site.title }}</title>
-<meta name="description" content="{{ page.description | default: site.description }}">
-```
+Adjust `.section-gap` and `.section-gap-sm` values in `style-explore.css`, or use specific spacing on the page. Target: the physics section should be visible without a full viewport of scrolling past white space.
 
-### Titles per page
+### Step 2.2: Rebalance text/figure columns
+Change the AI section from `col-md-5` (text) / `col-md-7` (figure) to `col-md-6` / `col-md-6` for equal width. This gives the text more breathing room for long technical terms.
 
-| Page | Title |
-|---|---|
-| index.html | Chenmu Zhang - Research |
-| publications.html | Chenmu Zhang - Publications |
-| bio.html | Chenmu Zhang - Bio |
-| e-ph1.html | Chenmu Zhang - Phonon-limited Transport: Quadrupole Scattering |
-| e-ph2.html | Chenmu Zhang - High-Mobility 2D Semiconductors |
-| e-s1.html | Chenmu Zhang - Electron-Surface Scattering |
-| e-s2.html | Chenmu Zhang - Graphene-Copper Conductivity |
-| e-eps.html | Chenmu Zhang - Dielectric Screening in vdW Heterostructures |
-| e-d.html | Chenmu Zhang - Electron-Defect Scattering in TMDCs |
+### Step 2.3: Remove MatClaw figure border
+Remove the `border: 1px solid #e5e7eb; border-radius: 8px;` from the MatClaw figure. Let the diagram sit naturally on the white page background.
 
----
+### Step 2.4: Fix the double name redundancy
+Two options (decide during implementation):
+- **Option A:** Remove the hero name entirely. The navbar already says "Chenmu Zhang." The hero section becomes just the subtitle ("Postdoctoral Researcher, Rice University") and flows directly into the AI heading. Cleaner, more minimal.
+- **Option B:** Keep the hero name but reduce its size (e.g., from 3.5rem to 2.5rem) so it doesn't compete with the navbar. Less dramatic change.
 
-## Phase 5: Fix mobile responsiveness
+Recommend trying Option A first -- it's bolder and more Apple-like. The navbar is always visible; the hero should add new information, not repeat.
 
-### Step 5.1: Responsive navbar with hamburger menu
+### Step 2.5: Remove the `<hr>` section divider
+Delete the `<hr class="section-divider">` between the AI and physics sections. The spacing alone (after Step 2.1 tightens it) will provide sufficient visual separation. The heading "Grounded in first-principles physics" is a strong enough section marker.
 
-Replace the current `<header>` with Bootstrap's responsive navbar component (`navbar-expand-md` + `navbar-toggler`). This collapses the nav links into a hamburger menu on screens below `md` (768px). Same dark background, same link text -- just wrapped in Bootstrap's responsive navbar markup.
+### Step 2.6: Mobile physics cards in 2 columns
+Change the physics cards from single-column stacking on mobile to a 2-column grid. Currently `col-md-6 col-lg-3` -- change to `col-6 col-lg-3` so they are always 2-column on small screens, 4-column on large.
 
-### Step 5.2: Responsive research cards
-
-Replace fixed inline styles `style="width: 400px; height: 400px;"` with Bootstrap responsive classes. The cards should:
-- Fill the available column width on all screen sizes
-- Use `img-fluid` (already present) for image scaling
-- Let height be determined by content rather than fixed at 400px, or use a responsive max-height
-
-### Step 5.3: Touch-friendly hero interaction
-
-The hover-to-swap-image interaction on the homepage doesn't work on touch devices. Add a touch/click fallback:
-- On mobile, tapping a research topic swaps the image (same as hover on desktop)
-- Tapping again or tapping another topic switches to that image
-- This can be done by adding `click` event listeners alongside the existing `mouseover`/`mouseout` handlers in `script.js`
-
-### Step 5.4: Fix bio page excess spacing
-
-Remove the three empty `<div class="my-4 py-5"></div>` blocks at the bottom of `bio.html`.
+### Step 2.7: Visual verification
+Take full-page screenshots at desktop (1440px) and mobile (390px) widths. Compare with the pre-fix screenshots. Verify:
+- No excessive whitespace gaps
+- Text and figure feel balanced
+- Name redundancy resolved
+- Physics cards in 2 columns on mobile
+- Overall feel: clean, intentional, content-first
 
 ---
 
-## Phase 6: Dynamic footer year
+## Phase 3: Promote index-b to index.html
 
-In the layout template, replace the hardcoded year with JavaScript:
+### Step 3.1: Replace index.html
+Replace the current `index.html` (old research-cards design) with the refined `index-b.html` content. Update the layout from `explore` to `default` (or merge the explore layout improvements into the default layout).
 
-```html
-<footer class="bg-light text-center py-3">
-  <p class="m-0">&copy; <script>document.write(new Date().getFullYear())</script> Powered by Chenmu</p>
-</footer>
-```
+### Step 3.2: Unify layouts
+Decide whether to:
+- **Option A:** Merge `explore.html` layout changes (Inter font, explore CSS) into `default.html` so ALL pages use the new typography. This gives a consistent feel across the site.
+- **Option B:** Keep two layouts -- `default.html` for existing pages (publications, bio, research detail) and `explore.html` for the new homepage. This avoids changing the look of subpages.
 
-Alternatively, use Jekyll's Liquid: `{{ site.time | date: '%Y' }}` which resolves at build time (updates on each deploy).
+Recommend Option A for consistency. The Inter font and refined CSS will improve all pages without breaking their layout.
+
+### Step 3.3: Clean up
+- Delete `index-b.html` (now merged into `index.html`)
+- Rename `style-explore.css` to `style.css` (replace the old one) or merge the explore styles into the existing `style.css`
+- Delete `_layouts/explore.html` if merged into `default.html`
+
+---
+
+## Phase 4: Update publications
+
+### Step 4.1: Add MatClaw paper
+Paper [14] (arXiv:2604.02688) is already in `_data/publications.yml` from the explore branch merge. Verify the numbering is correct and all 14 entries render properly.
+
+### Step 4.2: Verify publication page rendering
+Build the site and check that `publications.html` correctly shows all 14 papers with proper formatting, DOI links, and numbering.
+
+---
+
+## Phase 5: Update bio page
+
+### Step 5.1: Update bio text
+The bio currently only mentions physics research. Add a sentence about the AI/agent research direction. Keep it brief -- the homepage now tells the full story. Something like:
+
+"My current research focuses on building AI agents for autonomous computational materials science, building on years of first-principles electron transport research."
+
+### Step 5.2: Apply new typography
+If Phase 3 chose Option A (unified layout), the bio page will automatically get the Inter font and refined styling. Verify it still looks good with the photo + text layout.
+
+---
+
+## Phase 6: Final testing and deployment
+
+### Step 6.1: Local testing
+- Run `jekyll serve` and verify all pages:
+  - Homepage (new Variant B design)
+  - Publications (14 papers)
+  - Bio (updated text)
+  - All 6 research detail pages (unchanged, but with new layout/font if unified)
+- Test at desktop, tablet, and mobile widths
+- Verify all links work (nav, research cards, paper DOIs, GitHub links)
+
+### Step 6.2: Commit to dev
+Stage and commit all changes on `dev`.
+
+### Step 6.3: Merge to main and deploy
+- Merge `dev` into `main` (excluding `CLAUDE.md`, `research.md`, `plan.md` -- these are already in `_config.yml` exclude list, so they won't appear on the live site even if merged)
+- Push `main` to origin
+- Verify the live site at www.chenmuzhang.com updates correctly
 
 ---
 
 ## Execution Order
 
-The phases have dependencies:
-
 ```
-Phase 1 (Jekyll migration)  -- must be first, since it creates the layout files
+Phase 1 (merge explore -> dev)
   |
-  +-- Phase 2 (CSS fix)     -- trivial, done during layout creation
+Phase 2 (fix visual issues)
   |
-  +-- Phase 6 (footer year) -- done in the layout template
+Phase 3 (promote to index.html, unify layouts)
   |
-Phase 3 (compress images)   -- independent, can be done in parallel with Phase 1
+Phase 4 (verify publications) -- can parallel with Phase 5
+Phase 5 (update bio)
   |
-Phase 4 (SEO meta tags)     -- requires Phase 1 (needs layout template in place)
-  |
-Phase 5 (mobile fixes)      -- requires Phase 1 (navbar changes go in layout)
+Phase 6 (test and deploy)
 ```
-
-**Suggested order:**
-1. Phase 1 + Phase 2 + Phase 6 together (all involve the layout/template work)
-2. Phase 3 (image compression)
-3. Phase 4 (SEO frontmatter)
-4. Phase 5 (mobile responsiveness)
-5. Test locally with `jekyll serve`
-6. Verify visual design is unchanged on desktop
-7. Verify mobile experience
 
 ---
 
-## What will NOT change
+## What Will Change
 
-- Overall visual design (dark navbar, white content, light footer, Bootstrap styling)
-- Page URLs (all existing URLs stay the same)
-- Research card layout and interactive hero concept
-- Publication content and numbering
-- Bio content and photo
-- Custom domain (CNAME stays)
-- No contact info added (email remains in CV only)
-- No homepage intro added
+| Page | Change |
+|---|---|
+| Homepage (index.html) | Complete redesign: Variant B with AI lead + physics foundation |
+| Publications | +1 paper (MatClaw, [14]) |
+| Bio | +1 sentence about AI research direction |
+| All pages | Inter font, refined typography (if layout unified) |
 
-## What will be different for the author
+## What Will NOT Change
 
-- Adding a new page: create a file with frontmatter `layout: default`, write only the content
-- Adding a publication: add an entry to `_data/publications.yml`
-- Changing the navbar: edit `_layouts/default.html` once (applies to all pages)
-- Local preview: `bundle exec jekyll serve` (optional -- GitHub builds automatically on push)
+- Research detail pages content (e-ph1, e-s1, etc.)
+- CV PDF
+- Custom domain / CNAME
+- Navbar links (Research, Publications, Bio)

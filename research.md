@@ -147,3 +147,56 @@ The website currently reflects only Phase 1 (electron transport physics). It is 
 **Option F: Visual redesign**
 - New color scheme, typography, and layout
 - Can be combined with any content option above
+
+---
+
+## 6. Design Exploration Results
+
+Three homepage variants were built on the `explore` branch and evaluated visually.
+
+### Decision: Variant B ("Lead with AI, Physics Below")
+
+Variant B was selected. It uses a narrative structure: hero with name/title, a bold AI section with MatClaw description and figure, then a "Grounded in first-principles physics" section with 4 compact cards.
+
+### Audience Evaluation
+
+**PI reviewing for a faculty hire:**
+"Clear vision. Knows where they're going. The physics background is serious -- PRL, ACS Nano. This is someone who can actually build AI tools that work because they understand the domain."
+
+**Peer in materials science:**
+"I can see both the new direction and the track record. The framing makes the physics feel like an asset, not baggage."
+
+**Peer in AI/ML:**
+"Immediately clear this person builds agents. The architecture diagram shows technical depth. The physics section below adds credibility -- not just an ML person wrapping APIs."
+
+**New visitor / someone Googling you:**
+"Within 5 seconds I know: postdoc at Rice, builds AI agents for materials science. If I want more, there's a paper link and GitHub link right there."
+
+### Why Variant B over A and C
+
+**Variant A ("Two Pillars") rejected:** The 50/50 split created severe visual imbalance -- one MatClaw card on the left vs. four stacked physics cards on the right. Accidentally communicated "I mostly do physics with an AI side project."
+
+**Variant C ("Minimal Portfolio") rejected:** Most visually striking (full-width MatClaw figure), but too sparse for an academic audience. No explanatory text means a reader unfamiliar with the work has to click into every card. PIs and hiring committees want context without clicking.
+
+### Variant B: Visual Design Issues to Fix
+
+**1. Excessive vertical whitespace.**
+Three gaps are too large: (a) between the hero and the "Building autonomous agents..." heading (~100px of dead space), (b) between the pill links and the physics section (~300px -- nearly a full viewport of white, making readers think the page ended), (c) between the AI heading and the text+figure row. The whitespace philosophy is right, but amounts need to be reduced by roughly 40-50%.
+
+**2. Text/figure column imbalance.**
+The text column (`col-md-5`) is too narrow relative to the figure (`col-md-7`). With 18px font and long technical terms ("retrieval-augmented generation"), the text feels cramped. The figure has extra padding inside its border. A 50/50 or text-wider split would be more balanced.
+
+**3. MatClaw figure border.**
+The 1px gray border + 8px radius makes the figure feel like a separate floating element rather than integrated with the text beside it. Consider removing the border and letting the diagram's own white background blend with the page.
+
+**4. Double "Chenmu Zhang" redundancy.**
+The name appears in the navbar and again immediately below as the hero heading. On first load, this feels redundant. Options: remove the name from the hero (keep only subtitle + statement), or reduce the navbar name prominence.
+
+**5. Physics card image inconsistency.**
+The 4 physics cards have varying visual density. The e-eps card ("mote phonon / coupled PO") has large bold text that looks different from the scientific plots in the other cards. This is a content issue, but it affects visual consistency.
+
+**6. Section divider invisible.**
+The thin gray `<hr>` is nearly invisible within the large whitespace gap. Either tighten the spacing so the divider provides meaningful separation, or remove it and let spacing alone define the sections.
+
+**7. Mobile: physics cards stack single-column.**
+On mobile, the 4 physics cards stack one per row, making the page very long. A 2-column grid on mobile would be more compact while still readable.
