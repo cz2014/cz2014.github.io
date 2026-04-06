@@ -1,232 +1,113 @@
 ---
 layout: default
 title: Chenmu Zhang - Research
-description: Research overview of Chenmu Zhang - electron interactions in realistic materials.
+description: Chenmu Zhang - building autonomous AI agents for computational materials science.
 ---
 
-<!-- MAIN CONTENT -->
-<main class="container my-5">
+<main class="container" style="max-width: 960px;">
 
-  <h2 class="text-start display-2">Research</h2>
+  <!-- Hero -->
+  <div class="section-gap-sm">
+    <h1 class="hero-name">Chenmu Zhang</h1>
+    <p class="hero-subtitle">Postdoctoral Researcher, Rice University</p>
+  </div>
 
-<!-- Big Figure Area -->
-<div class="text-center position-relative my-5 py-4">
+  <!-- AI Section: Headline Act -->
+  <div style="padding-top: 1rem; padding-bottom: 3rem;">
+    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 580px; margin-bottom: 2rem;">
+      Building autonomous agents for computational materials science
+    </h2>
 
+    <div class="row g-4 align-items-start">
+      <!-- Left: Description -->
+      <div class="col-md-6">
+        <p class="section-subtext">
+          I develop LLM-based agents that autonomously write code, run simulations on
+          supercomputers, and analyze results -- replacing months of manual workflow
+          with natural-language instructions.
+        </p>
+        <p class="section-subtext mt-3">
+          My agent, MatClaw, uses a code-first architecture with
+          retrieval-augmented generation to achieve ~99% API accuracy across
+          domain libraries, and a four-layer memory system for coherent
+          multi-day workflows.
+        </p>
+        <div class="mt-3">
+          <a href="https://arxiv.org/abs/2604.02688" target="_blank" class="pill-link">Paper</a>
+          <a href="https://github.com/cz2014/MatClaw" target="_blank" class="pill-link">GitHub</a>
+        </div>
+      </div>
 
-  <!-- Container for the two-column layout -->
-  <div class="container my-5 py-4">
-    <div class="row align-items-center">
-
-      <!-- Left Column: Figure -->
-      <div class="col-md-6 text-center">
+      <!-- Right: Figure (no border) -->
+      <div class="col-md-6">
         <img
-          id="main-figure"
-          src="images/trans.png"
-          alt="Schematic of electron interactions in materials"
+          src="images/matclaw.png"
+          alt="MatClaw architecture: autonomous LLM agent orchestrating materials science workflows"
           class="img-fluid"
-          style="max-width: 450px;"
         />
       </div>
-
-      <!-- Right Column: Headline + Text + Hover Links -->
-      <div class="col-md-6">
-        <h2 class="text-dark mb-4 lh-base pb-4" style="font-size: 2.7rem;">
-          Fundamental physics from realistic materials
-        </h2>
-        <p class="fs-5 text-muted mb-4 ">
-          Through computations, I study electron interactions with:
-        </p>
-
-        <ul class="list-unstyled fs-4">
-          <li>
-            <a
-              href="#R1"
-              onmouseover="showImageOnHover('images/trans1.png')"
-              onmouseout="revertImage('images/trans.png')"
-              class="text-decoration-none text-muted"
-            >
-              Phonon
-            </a>
-          </li>
-          <li>
-            <a
-              href="#R2"
-              onmouseover="showImageOnHover('images/trans2.png')"
-              onmouseout="revertImage('images/trans.png')"
-              class="text-decoration-none text-muted"
-            >
-              Boundary
-            </a>
-          </li>
-          <li>
-            <a
-              href="#R3"
-              onmouseover="showImageOnHover('images/trans3.png')"
-              onmouseout="revertImage('images/trans.png')"
-              class="text-decoration-none text-muted"
-            >
-              Physical environment
-            </a>
-          </li>
-          <li>
-            <a
-              href="#R4"
-              onmouseover="showImageOnHover('images/trans4.png')"
-              onmouseout="revertImage('images/trans.png')"
-              class="text-decoration-none text-muted"
-            >
-              Defect
-            </a>
-          </li>
-        </ul>
-      </div>
-
     </div>
   </div>
 
-  <!-- Extra spacing -->
-  <div class="my-1 py-2"></div>
+  <!-- Physics Section: Foundation (no hr divider, spacing only) -->
+  <div style="padding-top: 3rem; padding-bottom: 4rem;">
+    <h2 class="section-heading">Grounded in first-principles physics</h2>
+    <p class="section-subtext mb-4">
+      This work builds on years of research computing how electrons scatter
+      in realistic materials -- the domain expertise that gives the AI work its depth.
+    </p>
 
-  <!-- R1 Section -->
-  <section id="R1" class="my-5 pt-5">
-    <h2 class="mb-3 text-start fw-normal">Electron-phonon</h2>
+    <div class="row g-4">
 
-    <div class="row">
-      <!-- Card #1 -->
-      <div class="col-md-4 mb-4 mt-2">
-        <div class="card h-100" style="max-width: 400px; overflow: hidden;">
-          <a href="e-ph1.html" class="text-decoration-none text-dark">
-            <img
-              src="images/e-ph1.png"
-              class="card-img-top"
-              alt="Quadrupole scattering methodology for 2D materials"
-              style="object-fit: cover; width: 100%; aspect-ratio: 400/330;"
-            />
-            <div class="card-body">
-              <p class="card-text">
-                Methodology development for 2D materials
-              </p>
+      <div class="col-6 col-lg-3">
+        <div class="project-card">
+          <a href="e-ph1.html">
+            <img src="images/e-ph1.png" alt="Electron-phonon coupling in 2D semiconductors" />
+            <div class="card-content">
+              <div class="card-title">Electron-phonon</div>
+              <div class="card-desc">Quadrupole scattering and high-mobility 2D semiconductors.</div>
             </div>
           </a>
         </div>
       </div>
 
-      <!-- Card #2 -->
-      <div class="col-md-4 mb-4 mt-2">
-        <div class="card h-100" style="max-width: 400px; overflow: hidden;">
-          <a href="e-ph2.html" class="text-decoration-none text-dark">
-            <img
-              src="images/e-ph2.png"
-              class="card-img-top"
-              alt="High-throughput screening of 2D semiconductor mobility"
-              style="object-fit: cover; width: 100%; aspect-ratio: 400/330;"
-            />
-            <div class="card-body">
-              <p class="card-text">
-                High-throughput screening for high-mobility 2D semiconductors
-              </p>
+      <div class="col-6 col-lg-3">
+        <div class="project-card">
+          <a href="e-s1.html">
+            <img src="images/e-s1.png" alt="Electron-surface scattering in metal films" />
+            <div class="card-content">
+              <div class="card-title">Electron-boundary</div>
+              <div class="card-desc">Surface scattering in nanoscale metals and graphene-Cu.</div>
             </div>
           </a>
         </div>
       </div>
-    </div>
-  </section>
 
-<!-- R2 Section -->
-<section id="R2" class="mb-5">
-  <h2 class="mb-3 text-start fw-normal">Electron-boundary</h2>
-  <div class="row">
-
-    <!-- Card #1 -->
-    <div class="col-md-4 mb-4 mt-2">
-      <div class="card h-100" style="max-width: 400px; overflow: hidden;">
-        <a href="e-s1.html" class="text-decoration-none text-dark">
-          <img
-            src="images/e-s1.png"
-            class="card-img-top"
-            alt="Electron-surface scattering in nanoscale metal films"
-            style="object-fit: cover; width: 100%; aspect-ratio: 400/330;"
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Methodology development for nanoscale metal films
-            </p>
-          </div>
-        </a>
+      <div class="col-6 col-lg-3">
+        <div class="project-card">
+          <a href="e-eps.html">
+            <img src="images/e-eps.png" alt="Dielectric screening in heterostructures" />
+            <div class="card-content">
+              <div class="card-title">Electron-environment</div>
+              <div class="card-desc">Dielectric screening in van der Waals heterostructures.</div>
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
 
-    <!-- Card #2 -->
-    <div class="col-md-4 mb-4 mt-2">
-      <div class="card h-100" style="max-width: 400px; overflow: hidden;">
-        <a href="e-s2.html" class="text-decoration-none text-dark">
-          <img
-            src="images/e-s2.png"
-            class="card-img-top"
-            alt="Graphene-copper interface conductivity"
-            style="object-fit: cover; width: 100%; aspect-ratio: 400/330;"
-          />
-          <div class="card-body">
-            <p class="card-text">Graphene-copper interface in copper</p>
-          </div>
-        </a>
+      <div class="col-6 col-lg-3">
+        <div class="project-card">
+          <a href="e-d.html">
+            <img src="images/e-d.png" alt="Defect scattering in TMDCs" />
+            <div class="card-content">
+              <div class="card-title">Electron-defect</div>
+              <div class="card-desc">Defect-limited mobility in transition metal dichalcogenides.</div>
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
 
+    </div>
   </div>
-</section>
 
-<!-- R3 Section -->
-<section id="R3" class="mb-5">
-  <h2 class="mb-3 text-start fw-normal">Electron-environment</h2>
-  <div class="row">
-
-    <!-- Card #1 -->
-    <div class="col-md-4 mb-4 mt-2">
-      <div class="card h-100" style="max-width: 400px; overflow: hidden;">
-        <a href="e-eps.html" class="text-decoration-none text-dark">
-          <img
-            src="images/e-eps.png"
-            class="card-img-top"
-            alt="Dielectric screening and remote phonon effects"
-            style="object-fit: cover; width: 100%; aspect-ratio: 400/330;"
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Dielectric screening and remote-phonon drag
-            </p>
-          </div>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- R4 Section -->
-<section id="R4" class="mb-5">
-  <h2 class="mb-3 text-start fw-normal">Electron-defect</h2>
-  <div class="row">
-
-    <!-- Card #1 -->
-    <div class="col-md-4 mb-4 mt-2">
-      <div class="card h-100" style="max-width: 400px; overflow: hidden;">
-        <a href="e-d.html" class="text-decoration-none text-dark">
-          <img
-            src="images/e-d.png"
-            class="card-img-top"
-            alt="Electron-defect scattering in transition metal dichalcogenides"
-            style="object-fit: cover; width: 100%; aspect-ratio: 400/330;"
-          />
-          <div class="card-body">
-            <p class="card-text">
-              Electron-defect scattering in TMDCs
-            </p>
-          </div>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
 </main>
