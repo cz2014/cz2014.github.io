@@ -49,6 +49,45 @@ description: Chenmu Zhang - building autonomous AI agents for computational mate
     </div>
   </div>
 
+  <!-- AI Section 2: Autonomous research loop / band-gap -->
+  <div style="padding-top: 1rem; padding-bottom: 3rem;">
+    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 620px; margin-bottom: 2rem;">
+      LLM-agent research loop optimizing materials ML models
+    </h2>
+
+    <div class="row g-4 align-items-start">
+      <!-- Left: Description -->
+      <div class="col-md-6">
+        <p class="section-subtext">
+          An LLM-agent research loop is set running: it repeatedly edits and trains a
+          crystal graph neural network to predict band gaps. On the MatBench band-gap
+          benchmark of over 100,000 crystals, the loop built the most accurate model
+          trained without external pretraining (MAE = 0.148 eV), ahead of all 17
+          expert-designed band-gap models trained on the benchmark.
+        </p>
+        <p class="section-subtext mt-3">
+          This shows that an AI agent can optimize an expert-designed ML model and push
+          its accuracy further. Alongside this promise, I also examine the limitations of
+          such loops and how to overcome them.
+        </p>
+        <div class="mt-3">
+          <!-- TODO: add arXiv link once the paper is posted -->
+          <a href="#" class="pill-link">Paper</a>
+          <a href="https://github.com/cz2014/llm-autoresearch-bandgap" target="_blank" class="pill-link">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Right: Figure (no border) -->
+      <div class="col-md-6">
+        <img
+          src="images/autoresearch-bandgap.png"
+          alt="MatBench band-gap leaderboard: the agent's from-scratch model (gold star, 0.148 eV MAE) sits ahead of every expert-designed graph network and composition baseline, behind only foundation models that use external pretraining"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+
   <!-- Physics Section: Foundation (no hr divider, spacing only) -->
   <div style="padding-top: 3rem; padding-bottom: 4rem;">
     <h2 class="section-heading">Previous work: electron transport from first principles</h2>
