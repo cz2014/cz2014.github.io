@@ -1,3 +1,13 @@
+- number: 15
+  authors: '<u>C. Zhang</u>* and B. I. Yakobson'
+  title: "Optimizing Expert-Designed Crystal Graph Networks for Band-Gap Prediction with an Autonomous LLM Research Loop"
+  journal: "arXiv preprint arXiv:2606.29717"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2026
+  doi: "https://doi.org/10.48550/arXiv.2606.29717"
+
 - number: 14
   authors: '<u>C. Zhang</u>* and B. I. Yakobson'
   title: "MatClaw: An Autonomous Code-First LLM Agent for End-to-End Materials Exploration"
