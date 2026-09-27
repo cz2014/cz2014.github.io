@@ -7,8 +7,9 @@ layout: default
   <header class="story-header">
     <h1>{{ page.display_title }}</h1>
     <p class="story-summary">{{ page.summary }}</p>
-    <p class="story-authors">{{ page.authors }}</p>
-    <p class="story-affiliation">{{ page.affiliation }}<br />{{ page.author_note }}</p>
+    {% if page.authors %}<p class="story-authors">{{ page.authors }}</p>{% endif %}
+    {% if page.affiliation %}<p class="story-affiliation">{{ page.affiliation }}{% if page.author_note %}<br />{{ page.author_note }}{% endif %}</p>{% endif %}
+    {% if page.links %}
     <div class="research-links">
       {% for link in page.links %}
       {% if link.url %}
@@ -18,6 +19,7 @@ layout: default
       {% endif %}
       {% endfor %}
     </div>
+    {% endif %}
   </header>
 
   {% for section in page.sections %}
@@ -29,22 +31,37 @@ layout: default
       <p>{{ paragraph }}</p>
       {% endfor %}
     </div>
-    {% assign figure = page.figures[section.figure_index] %}
-    <figure class="story-figure"{% if figure.max_width %} style="--figure-width: {{ figure.max_width }};"{% endif %}>
-      <a href="{{ figure.src | relative_url }}" target="_blank" rel="noopener">
-        <img src="{{ figure.src | relative_url }}" alt="{{ figure.alt }}"
-          width="{{ figure.width }}" height="{{ figure.height }}" loading="lazy" />
-        <span class="figure-action">View full-size figure &nearr;</span>
-      </a>
-      <figcaption>{{ figure.caption }}</figcaption>
-    </figure>
+    {% if section.figure_index != nil %}
+    {% assign section_figure = page.figures[section.figure_index] %}
+    {% include research-figure.html figure=section_figure %}
+    {% endif %}
+    {% if section.abstract %}
+    <details class="research-abstract">
+      <summary>Read the full abstract</summary>
+      <div class="article-prose">{{ section.abstract | markdownify }}</div>
+    </details>
+    {% endif %}
+    {% if section.publication_number %}
+    {% assign section_publication = site.data.publications | where: 'number', section.publication_number | first %}
+    <div class="research-links">
+      <a href="{{ section_publication.doi }}" target="_blank" rel="noopener" class="pill-link">Paper</a>
+    </div>
+    {% endif %}
   </section>
   {% endfor %}
 
   <section class="story-citation" aria-labelledby="paper-title">
+    {% if page.publication_numbers %}
+    <h2 id="paper-title">Related publications</h2>
+    {% for publication_number in page.publication_numbers %}
+    {% assign referenced_publication = site.data.publications | where: 'number', publication_number | first %}
+    {% include publication-entry.html publication=referenced_publication %}
+    {% endfor %}
+    {% else %}
     <h2 id="paper-title">Research paper</h2>
     <p class="paper-title">{{ page.heading }}</p>
     <p>{{ page.authors }}<br />{{ page.affiliation }}<br />{{ page.author_note }}</p>
+    {% endif %}
   </section>
   {{ content }}
 </main>

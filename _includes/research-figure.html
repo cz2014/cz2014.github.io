@@ -1,0 +1,9 @@
+{% assign figure = include.figure %}
+<figure class="story-figure"{% if figure.max_width %} style="--figure-width: {{ figure.max_width }};"{% endif %}>
+  <a href="{{ figure.src | relative_url }}" target="_blank" rel="noopener">
+    <img src="{{ figure.src | relative_url }}" alt="{{ figure.alt }}"
+      width="{{ figure.width }}" height="{{ figure.height }}" loading="lazy" />
+    <span class="figure-action">View full-size figure &nearr;</span>
+  </a>
+  {% if figure.caption %}<figcaption>{{ figure.caption }}</figcaption>{% endif %}
+</figure>

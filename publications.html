@@ -4,33 +4,23 @@ title: Chenmu Zhang - Publications
 description: Publication list of Chenmu Zhang - AI agents for materials science and first-principles electron transport.
 ---
 
-<main class="container my-5">
-
-  <div class="row justify-content-center">
-  <div class="col-md-8">
-    <h1 class="text-start display-2 my-4 pb-2">Publications</h1>
-    <p class="fs-5">
-      See also at
-      <a href="https://scholar.google.com/citations?user=qBefT0cAAAAJ&hl=en" class="text-decoration-underline text-info" target="_blank">
-        Google Scholar
-      </a>:
-    </p>
-
-    <div class="fs-5 text-muted">
-    {% for pub in site.data.publications %}
-      <p>
-        [{{ pub.number }}]
-        {{ pub.authors }},
-        {{ pub.title }}.
-        <u>
-          <a href="{{ pub.doi }}" class="text-decoration-none text-dark" target="_blank">
-            {{ pub.journal }}{% if pub.volume != "" %} <b>{{ pub.volume }}</b>{% endif %}{% if pub.issue != "" %}({{ pub.issue }}){% endif %}{% if pub.pages != "" %}, {{ pub.pages }}{% endif %} ({{ pub.year }})
-          </a>
-        </u>
-      </p>
-    {% endfor %}
+<main class="site-container content-page publications-page">
+  <header class="page-header">
+    <h1>Publications</h1>
+    <p class="page-intro">Papers on autonomous materials research and first-principles electron transport.</p>
+    <div class="research-links">
+      <a href="https://scholar.google.com/citations?user=qBefT0cAAAAJ&amp;hl=en" target="_blank" rel="noopener" class="pill-link">Google Scholar</a>
     </div>
-  </div>
-  </div>
-
+  </header>
+  {% assign publications_by_year = site.data.publications | group_by: 'year' | sort: 'name' | reverse %}
+  {% for year in publications_by_year %}
+  <section class="publication-year" aria-labelledby="year-{{ year.name }}">
+    <h2 id="year-{{ year.name }}">{{ year.name }}</h2>
+    <div class="publication-list">
+      {% for pub in year.items %}
+      {% include publication-entry.html publication=pub %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
 </main>
