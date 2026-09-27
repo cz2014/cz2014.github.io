@@ -4,225 +4,146 @@ title: Chenmu Zhang - Research
 description: Chenmu Zhang - building autonomous AI agents for computational materials science.
 ---
 
-<main class="container" style="max-width: 960px;">
-
-  <!-- Hero -->
-  <div class="section-gap-sm">
+<main class="site-container research-home">
+  <header class="research-intro">
     <h1 class="hero-name">Chenmu Zhang</h1>
     <p class="hero-subtitle">Postdoctoral Researcher in Materials Science, Rice University</p>
-  </div>
+    <p class="research-statement">I build autonomous AI agents for computational materials science.</p>
+    <p class="intro-context">My work connects scientific computing, agent evaluation, and materials discovery.</p>
+  </header>
 
-  <!-- AI Section: Headline Act -->
-  <div style="padding-top: 1rem; padding-bottom: 3rem;">
-    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 580px; margin-bottom: 2rem;">
-      Building autonomous agents for computational materials science
-    </h2>
+  <div class="research-group-label">Current research</div>
 
-    <!-- Description: two columns -->
-    <div class="row g-4 align-items-start">
-      <div class="col-md-6">
-        <p class="section-subtext">
-          MatClaw is an autonomous LLM agent for computational materials science.
-          Given a task in plain language, it writes and runs Python against real
-          domain libraries, submits jobs to supercomputers, and analyzes the
-          results.
-        </p>
-        <div class="mt-3">
-          <a href="https://arxiv.org/abs/2604.02688" target="_blank" class="pill-link">Paper</a>
-          <a href="https://github.com/cz2014/MatClaw" target="_blank" class="pill-link">GitHub</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <p class="section-subtext">
-          Coding agents live in a repository. MatClaw lives in a long-running
-          Python session connected to a cluster, closer to a scientist at a
-          notebook. Loaded models and running jobs stay in memory between steps,
-          and its tools are whatever code it writes. The two projects below both
-          build on it.
-        </p>
-      </div>
+  <section class="research-entry research-entry-featured" aria-labelledby="matclaw-title">
+    <header class="research-entry-header">
+      <h2 id="matclaw-title">MatClaw</h2>
+      <p class="research-contribution">An autonomous agent that writes code, runs simulations, and analyzes materials.</p>
+    </header>
+    <div class="research-copy">
+      <p>Given a task in plain language, MatClaw writes and runs Python against domain libraries
+        and submits jobs to supercomputers. It works in a persistent Python session: loaded
+        models and running jobs stay available between steps, and its tools are the code it
+        writes. It is the agent behind the benchmark and Cu–In–Se study below.</p>
     </div>
-
-    <!-- Figure: full width (no border) -->
-    <img
-      src="images/matclaw.png"
-      alt="MatClaw architecture: autonomous LLM agent orchestrating materials science workflows"
-      class="img-fluid section-figure-wide"
-    />
-  </div>
-
-  <!-- AI Section 2: CompMat-Bench -->
-  <div style="padding-top: 1rem; padding-bottom: 3rem;">
-    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 620px; margin-bottom: 2rem;">
-      Benchmarking AI agents on the steps of real materials research
-    </h2>
-
-    <!-- Description: two columns -->
-    <div class="row g-4 align-items-start">
-      <div class="col-md-6">
-        <p class="section-subtext">
-          CompMat-Bench is a benchmark of 94 tasks from 15 recently published
-          computational materials studies. The expensive simulations are run in
-          advance, and answers are graded by fixed rules with no LLM judge.
-        </p>
-        <div class="mt-3">
-          <a href="compmat-bench.html" class="pill-link">Project page</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <p class="section-subtext">
-          With full guidance, agents pass 66 to 90% of single research steps.
-          Long workflows with reduced guidance are much harder, and most failures
-          are scientific errors: agents miss what an experienced researcher would
-          notice.
-        </p>
-      </div>
+    <figure class="research-figure research-figure-wide">
+      <a href="{{ '/images/matclaw.png' | relative_url }}" target="_blank" rel="noopener">
+        <img src="{{ '/images/matclaw.png' | relative_url }}" width="2000" height="668"
+          alt="MatClaw architecture: an autonomous LLM agent writes Python to orchestrate materials science tools and supercomputer jobs." />
+        <span class="figure-action">View full-size figure &nearr;</span>
+      </a>
+    </figure>
+    <div class="research-links">
+      <a href="https://arxiv.org/abs/2604.02688" target="_blank" rel="noopener" class="pill-link">Paper</a>
+      <a href="https://github.com/cz2014/MatClaw" target="_blank" rel="noopener" class="pill-link">GitHub</a>
     </div>
+  </section>
 
-    <!-- Figure: full width (no border) -->
-    <img
-      src="images/compmat-bench-overview.png"
-      alt="Overview of CompMat-Bench: a published study is split into research steps, the expensive simulation is run once by the authors, and agent answers are graded by fixed rules"
-      class="img-fluid section-figure-wide"
-    />
-  </div>
-
-  <!-- AI Section 3: Cu-In-Se discovery -->
-  <div style="padding-top: 1rem; padding-bottom: 3rem;">
-    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 620px; margin-bottom: 2rem;">
-      Materials discovery carried out by an autonomous agent
-    </h2>
-
-    <div class="row g-4 align-items-center">
-      <!-- Left: Description -->
-      <div class="col-md-6">
-        <p class="section-subtext">
-          Humans define the scientific tasks, and an autonomous LLM agent carries
-          them out. We apply this workflow to Cu-In-Se, the system of the solar
-          absorber CuInSe<sub>2</sub>.
-        </p>
-        <p class="section-subtext mt-3">
-          The agent joins different methods in one workflow: structure generation
-          with MatterGen, screening with machine-learning potentials, DFT with
-          VASP, and phonon calculations with Phonopy. It writes the Python that
-          connects them and runs the jobs on a supercomputer. From a single
-          request, it completed the screening shown here with no further human
-          input.
-        </p>
-        <div class="mt-3">
-          <a href="cu-in-se.html" class="pill-link">Project page</a>
-          <a href="https://doi.org/10.5281/zenodo.22184655" target="_blank" class="pill-link">Data</a>
-        </div>
-      </div>
-
-      <!-- Right: Figure (no border) -->
-      <div class="col-md-6">
-        <img
-          src="images/cu-in-se-funnel.png"
-          alt="Screening funnel: 1,000 generated structures, 578 after deduplication, 268 after screening with a machine-learning potential, 45 validated with DFT, 19 below the Materials Project hull, 6 on the combined hull"
-          class="img-fluid"
-        />
-      </div>
+  <section class="research-entry" aria-labelledby="compmat-title">
+    <header class="research-entry-header">
+      <h2 id="compmat-title"><a href="{{ '/compmat-bench.html' | relative_url }}">CompMat-Bench</a></h2>
+      <p class="research-contribution">Testing AI agents on the steps of real materials research.</p>
+    </header>
+    <div class="research-copy">
+      <p>A benchmark of <strong>94 tasks from 15 published studies</strong>, with expensive simulations
+        run in advance and answers graded by fixed rules, without an LLM judge. With full guidance,
+        agents pass 66–90% of single research steps. Long workflows with reduced guidance are harder;
+        most failures are scientific errors.</p>
     </div>
-  </div>
-
-  <!-- AI Section 4: Autonomous research loop / band-gap -->
-  <div style="padding-top: 1rem; padding-bottom: 3rem;">
-    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 620px; margin-bottom: 2rem;">
-      LLM-agent research loop optimizing materials ML models
-    </h2>
-
-    <div class="row g-4 align-items-start">
-      <!-- Left: Description -->
-      <div class="col-md-6">
-        <p class="section-subtext">
-          An LLM-agent research loop is set running: it repeatedly edits and trains a
-          crystal graph neural network to predict band gaps. On the MatBench band-gap
-          benchmark of over 100,000 crystals, the loop built the most accurate model
-          trained without external pretraining (MAE = 0.148 eV), ahead of all 17
-          expert-designed band-gap models trained on the benchmark.
-        </p>
-        <p class="section-subtext mt-3">
-          This shows that an AI agent can optimize an expert-designed ML model and push
-          its accuracy further. Alongside this promise, I also examine the limitations of
-          such loops and how to overcome them.
-        </p>
-        <div class="mt-3">
-          <a href="https://arxiv.org/abs/2606.29717" target="_blank" class="pill-link">Paper</a>
-          <a href="https://github.com/cz2014/llm-autoresearch-bandgap" target="_blank" class="pill-link">GitHub</a>
-        </div>
-      </div>
-
-      <!-- Right: Figure (no border) -->
-      <div class="col-md-6">
-        <img
-          src="images/autoresearch-bandgap.png"
-          alt="MatBench band-gap leaderboard: the agent's from-scratch model (gold star, 0.148 eV MAE) sits ahead of every expert-designed graph network and composition baseline, behind only foundation models that use external pretraining"
-          class="img-fluid"
-        />
-      </div>
+    <figure class="research-figure research-figure-wide">
+      <a href="{{ '/images/compmat-bench-overview.png' | relative_url }}" target="_blank" rel="noopener">
+        <img src="{{ '/images/compmat-bench-overview.png' | relative_url }}" width="1650" height="524" loading="lazy"
+          alt="CompMat-Bench: published studies become research steps, expensive simulations are precomputed, and fixed rules evaluate agent answers." />
+        <span class="figure-action">View full-size figure &nearr;</span>
+      </a>
+    </figure>
+    <div class="research-links">
+      <a href="{{ '/compmat-bench.html' | relative_url }}" class="pill-link">Project page</a>
     </div>
-  </div>
+  </section>
 
-  <!-- Physics Section: Foundation (no hr divider, spacing only) -->
-  <div style="padding-top: 3rem; padding-bottom: 4rem;">
-    <h2 class="section-heading">Previous work: electron transport from first principles</h2>
-    <p class="section-subtext mb-4">
-      Before turning to AI, I spent years computing how electrons scatter
-      in 2D semiconductors and nanoscale metals -- phonons, surfaces, defects, dielectric environments.
-    </p>
-
-    <div class="row g-4">
-
-      <div class="col-6 col-lg-3">
-        <div class="project-card">
-          <a href="e-ph1.html">
-            <img src="images/e-ph1.png" alt="Electron-phonon coupling in 2D semiconductors" />
-            <div class="card-content">
-              <div class="card-title">Electron-phonon</div>
-              <div class="card-desc">Quadrupole scattering and high-mobility 2D semiconductors.</div>
-            </div>
-          </a>
-        </div>
+  <section class="research-entry" aria-labelledby="cu-in-se-title">
+    <header class="research-entry-header">
+      <h2 id="cu-in-se-title"><a href="{{ '/cu-in-se.html' | relative_url }}">Materials discovery in Cu–In–Se</a></h2>
+      <p class="research-contribution">Human-defined scientific tasks, carried out by an autonomous agent.</p>
+    </header>
+    <div class="research-grid">
+      <div class="research-copy">
+        <p>Applied to the system of the solar absorber CuInSe<sub>2</sub>, the agent connects
+          MatterGen, machine-learning potentials, VASP, and Phonopy in one workflow.
+          From a single request, it completed the screening shown here with no further human input.</p>
+        <p class="research-note">The authors reviewed the scientific validity of the outputs and
+          extended checks where the automated runs were incomplete.</p>
       </div>
-
-      <div class="col-6 col-lg-3">
-        <div class="project-card">
-          <a href="e-s1.html">
-            <img src="images/e-s1.png" alt="Electron-surface scattering in metal films" />
-            <div class="card-content">
-              <div class="card-title">Electron-boundary</div>
-              <div class="card-desc">Surface scattering in nanoscale metals and graphene-Cu.</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-lg-3">
-        <div class="project-card">
-          <a href="e-eps.html">
-            <img src="images/e-eps.png" alt="Dielectric screening in heterostructures" />
-            <div class="card-content">
-              <div class="card-title">Electron-environment</div>
-              <div class="card-desc">Dielectric screening in van der Waals heterostructures.</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-6 col-lg-3">
-        <div class="project-card">
-          <a href="e-d.html">
-            <img src="images/e-d.png" alt="Defect scattering in TMDCs" />
-            <div class="card-content">
-              <div class="card-title">Electron-defect</div>
-              <div class="card-desc">Defect-limited mobility in transition metal dichalcogenides.</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
+      <figure class="research-figure">
+        <a href="{{ '/images/cu-in-se-funnel.png' | relative_url }}" target="_blank" rel="noopener">
+          <img src="{{ '/images/cu-in-se-funnel.png' | relative_url }}" width="1600" height="713" loading="lazy"
+            alt="Screening funnel: 1,000 generated structures, 578 after deduplication, 268 after machine-learning screening, 45 validated with DFT, 19 at or below the Materials Project hull, and 6 on the combined hull." />
+          <span class="figure-action">View full-size figure &nearr;</span>
+        </a>
+        <figcaption>From 1,000 generated structures to 45 DFT-validated candidates.</figcaption>
+      </figure>
     </div>
-  </div>
+    <div class="research-links">
+      <a href="{{ '/cu-in-se.html' | relative_url }}" class="pill-link">Project page</a>
+      <a href="https://doi.org/10.5281/zenodo.22184655" target="_blank" rel="noopener" class="pill-link">Data</a>
+    </div>
+  </section>
 
+  <section class="research-entry" aria-labelledby="bandgap-title">
+    <header class="research-entry-header">
+      <h2 id="bandgap-title">Autonomous research for band-gap prediction</h2>
+      <p class="research-contribution">An LLM research loop improves an expert-designed crystal graph network.</p>
+    </header>
+    <div class="research-grid">
+      <div class="research-copy">
+        <p>The agent repeatedly edits and trains a model on the MatBench band-gap benchmark
+          of over 100,000 crystals. It achieved <strong>0.148 eV MAE</strong>, ahead of all
+          17 expert-designed band-gap models trained on the benchmark.</p>
+        <p>This is the most accurate model trained without external pretraining in that comparison.
+          Foundation models using external pretraining remain ahead. Alongside this result,
+          I study the limitations of autonomous research loops and how to overcome them.</p>
+      </div>
+      <figure class="research-figure">
+        <a href="{{ '/images/autoresearch-bandgap.png' | relative_url }}" target="_blank" rel="noopener">
+          <img src="{{ '/images/autoresearch-bandgap.png' | relative_url }}" width="1299" height="1112" loading="lazy"
+            alt="MatBench band-gap leaderboard: the agent's model achieves 0.148 eV MAE, ahead of the expert-designed models trained without external pretraining, behind foundation models using external pretraining." />
+          <span class="figure-action">View full-size figure &nearr;</span>
+        </a>
+        <figcaption>Band-gap prediction error. Lower is better; models with external pretraining are identified separately.</figcaption>
+      </figure>
+    </div>
+    <div class="research-links">
+      <a href="https://arxiv.org/abs/2606.29717" target="_blank" rel="noopener" class="pill-link">Paper</a>
+      <a href="https://github.com/cz2014/llm-autoresearch-bandgap" target="_blank" rel="noopener" class="pill-link">GitHub</a>
+    </div>
+  </section>
+
+  <section class="previous-research" aria-labelledby="previous-title">
+    <p class="research-group-label">Previous research</p>
+    <h2 id="previous-title">Electron transport from first principles</h2>
+    <p class="research-copy">Before turning to AI, I studied how electrons scatter in 2D
+      semiconductors and nanoscale metals: phonons, surfaces, defects, and dielectric environments.</p>
+    <div class="previous-grid">
+      <a class="previous-project" href="{{ '/e-ph1.html' | relative_url }}">
+        <img src="{{ '/images/e-ph1.png' | relative_url }}" loading="lazy" alt="Electron-phonon coupling in 2D semiconductors" />
+        <h3>Electron–phonon</h3>
+        <p>Quadrupole scattering and high-mobility 2D semiconductors.</p>
+      </a>
+      <a class="previous-project" href="{{ '/e-s1.html' | relative_url }}">
+        <img src="{{ '/images/e-s1.png' | relative_url }}" loading="lazy" alt="Electron-surface scattering in metal films" />
+        <h3>Electron–boundary</h3>
+        <p>Surface scattering in nanoscale metals and graphene–Cu.</p>
+      </a>
+      <a class="previous-project" href="{{ '/e-eps.html' | relative_url }}">
+        <img src="{{ '/images/e-eps.png' | relative_url }}" loading="lazy" alt="Dielectric screening in heterostructures" />
+        <h3>Electron–environment</h3>
+        <p>Dielectric screening in van der Waals heterostructures.</p>
+      </a>
+      <a class="previous-project" href="{{ '/e-d.html' | relative_url }}">
+        <img src="{{ '/images/e-d.png' | relative_url }}" loading="lazy" alt="Defect scattering in transition metal dichalcogenides" />
+        <h3>Electron–defect</h3>
+        <p>Defect-limited mobility in transition metal dichalcogenides.</p>
+      </a>
+    </div>
+  </section>
 </main>
