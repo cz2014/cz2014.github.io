@@ -1,6 +1,6 @@
 {% assign publication = include.publication %}
 <article class="publication-entry" id="publication-{{ publication.number }}">
-  <h3><a href="{{ publication.doi }}" target="_blank" rel="noopener">{{ publication.title }}</a></h3>
+  <h3>{% if publication.doi != "" %}<a href="{{ publication.doi }}" target="_blank" rel="noopener">{{ publication.title }}</a>{% else %}{{ publication.title }}{% endif %}</h3>
   <p class="publication-authors">{{ publication.authors }}</p>
   <p class="publication-venue">{{ publication.journal }}{% if publication.volume != "" %} <span>{{ publication.volume }}</span>{% endif %}{% if publication.issue != "" %}({{ publication.issue }}){% endif %}{% if publication.pages != "" %}, {{ publication.pages | replace: '--', '–' }}{% endif %} ({{ publication.year }})</p>
 </article>

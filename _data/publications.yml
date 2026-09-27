@@ -1,12 +1,62 @@
+- number: 19
+  authors: '<u>C. Zhang</u>*, L. C. Felix, J.-J. Zhang, X. Li, X. Jiang, T. Jiang, S. Mishra, X. Qin, and B. I. Yakobson'
+  title: "CompMat-Bench: Benchmarking AI Agents for Computational Materials Science"
+  journal: "Submitted"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2026
+  doi: "/compmat-bench.html"
+
+- number: 18
+  authors: 'Z. Yuan* and <u>C. Zhang</u>*'
+  title: "Off-Stoichiometric Energetic and Electronic Asymmetry in Ternary Cu–In–Se: Task-Oriented Materials Discovery by an Autonomous LLM Agent"
+  journal: "In preparation"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2026
+  doi: "/cu-in-se.html"
+
+- number: 17
+  authors: '<u>C. Zhang</u>*, L. C. Felix*, and B. I. Yakobson'
+  title: "Defect-Controlled Thermal Conductivity of ZrC at High Temperatures from First Principles"
+  journal: "Submitted"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2026
+  doi: ""
+
+- number: 16
+  authors: '<u>C. Zhang</u>*, F. Sun, and B. I. Yakobson'
+  title: "Design of Efficient True Random Bits Generation in Transition Metal Dichalcogenides from First Principles"
+  journal: "Submitted"
+  volume: ""
+  issue: ""
+  pages: ""
+  year: 2026
+  doi: ""
+
 - number: 15
   authors: '<u>C. Zhang</u>* and B. I. Yakobson'
   title: "Optimizing Expert-Designed Crystal Graph Networks for Band-Gap Prediction with an Autonomous LLM Research Loop"
-  journal: "arXiv preprint arXiv:2606.29717"
+  journal: "Workshop on Language Models for Scientific Discovery (LM4Sci) at COLM, arXiv:2606.29717"
   volume: ""
   issue: ""
   pages: ""
   year: 2026
   doi: "https://doi.org/10.48550/arXiv.2606.29717"
+
+- number: 10
+  authors: '<u>C. Zhang</u>* and Y. Liu'
+  title: "Enhancing Carrier Mobility by Remote Phonons"
+  journal: "Nano Letters"
+  volume: "26"
+  issue: "30"
+  pages: "9716--9721"
+  year: 2026
+  doi: "https://doi.org/10.1021/acs.nanolett.6c00923"
 
 - number: 14
   authors: '<u>C. Zhang</u>* and B. I. Yakobson'
@@ -47,16 +97,6 @@
   pages: ""
   year: 2024
   doi: "https://doi.org/10.48550/arXiv.2404.08117"
-
-- number: 10
-  authors: '<u>C. Zhang</u>* and Y. Liu'
-  title: "Fröhlich Scattering and Mobility of 2D Semiconductors in van der Waals Heterostructure"
-  journal: "arXiv preprint arXiv:2404.08114"
-  volume: ""
-  issue: ""
-  pages: ""
-  year: 2024
-  doi: "https://doi.org/10.48550/arXiv.2404.08114"
 
 - number: 9
   authors: 'Z. Xiao*, R. Guo, <u>C. Zhang</u>, and Y. Liu'
