@@ -1,0 +1,53 @@
+---
+layout: project
+title: Chenmu Zhang - CompMat-Bench
+description: CompMat-Bench, a benchmark of 94 tasks for evaluating AI agents on the steps of published computational materials research.
+heading: "CompMat-Bench: Benchmarking AI Agents for Computational Materials Science"
+authors: "Chenmu Zhang, Levi Felix, Jun-Jie Zhang, Xingfu Li, Xuelian Jiang, Tao Jiang, Subhendu Mishra, Xixi Qin, and Boris I. Yakobson*"
+affiliation: "Department of Materials Science and NanoEngineering, Rice University"
+author_note: "* Corresponding author."
+links:
+  - label: Paper
+  - label: Code and data
+  - label: MatClaw
+    url: https://github.com/cz2014/MatClaw
+summary: >-
+  A benchmark of 94 tasks from 15 recently published computational materials
+  studies. Each task is one research step. The expensive simulations are run
+  in advance, and answers are graded by fixed rules with no LLM judge.
+findings:
+  - claim: "With full guidance, agents pass 66 to 90% of single research steps."
+    detail: >-
+      Agents built on three LLMs pass 66.0 to 90.4% of the 94 single tasks.
+      Preparing simulation inputs is the hardest kind of task for every agent.
+  - claim: "The strongest agent falls only when long workflows meet reduced guidance."
+    detail: >-
+      Either factor alone lowers the pass rates of the weaker agents. With
+      both, all three agents do worse than on single tasks with full guidance,
+      and pass rates fall to 50 to 75%.
+  - claim: "Agents miss what an experienced researcher would notice."
+    detail: >-
+      Most failures are scientific errors. Agents do not recognize anomalies in
+      their own results, and agents built on different LLMs lack the same
+      implicit knowledge, so they fail in the same way. In one workflow, the
+      warning sign was printed in the agent's own output in nine failing runs.
+      The agent continued anyway.
+figures:
+  - src: images/compmat-bench-results.png
+    alt: "Pass rates of DeepSeek V4.1 Flash, Gemini 3.8 Flash and GPT-5.6 Sol under four conditions. With workflows and reduced guidance the pass rates are 50, 54 and 75 percent."
+    caption: >-
+      Pass rates of three agents under four conditions: single tasks or
+      workflows, with full or reduced guidance. Each cell gives the pass rate
+      and the count behind it. The single-task column covers the 52 tasks that
+      have a reduced-guidance version, so its pass rates differ from those on
+      all 94 tasks quoted above. The &Delta; cells give differences in
+      percentage points.
+  - src: images/compmat-bench-overview.png
+    alt: "Overview of CompMat-Bench: a published study is split into research steps, the expensive simulation is run once by the authors, and agent answers are graded by fixed rules."
+    caption: >-
+      How the benchmark works, illustrated with a study of isotope effects in
+      boron arsenide. Each study is split into research steps. We run the
+      expensive simulations once, in advance. Agents prepare the inputs or
+      analyze our precomputed outputs, and fixed rules grade their answers
+      against the reference results of our reproduction.
+---

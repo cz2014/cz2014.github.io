@@ -18,38 +18,115 @@ description: Chenmu Zhang - building autonomous AI agents for computational mate
       Building autonomous agents for computational materials science
     </h2>
 
+    <!-- Description: two columns -->
     <div class="row g-4 align-items-start">
-      <!-- Left: Description -->
       <div class="col-md-6">
         <p class="section-subtext">
-          I develop LLM-based agents that autonomously write code, run simulations on
-          supercomputers, and analyze results -- exploring how far AI can push the
-          boundaries of computational materials research.
-        </p>
-        <p class="section-subtext mt-3">
-          MatClaw uses a code-first architecture with
-          retrieval-augmented generation to achieve ~99% API accuracy across
-          domain libraries, and a four-layer memory system for coherent
-          multi-day workflows.
+          MatClaw is an autonomous LLM agent for computational materials science.
+          Given a task in plain language, it writes and runs Python against real
+          domain libraries, submits jobs to supercomputers, and analyzes the
+          results.
         </p>
         <div class="mt-3">
           <a href="https://arxiv.org/abs/2604.02688" target="_blank" class="pill-link">Paper</a>
           <a href="https://github.com/cz2014/MatClaw" target="_blank" class="pill-link">GitHub</a>
         </div>
       </div>
+      <div class="col-md-6">
+        <p class="section-subtext">
+          Coding agents live in a repository. MatClaw lives in a long-running
+          Python session connected to a cluster, closer to a scientist at a
+          notebook. Loaded models and running jobs stay in memory between steps,
+          and its tools are whatever code it writes. The two projects below both
+          build on it.
+        </p>
+      </div>
+    </div>
+
+    <!-- Figure: full width (no border) -->
+    <img
+      src="images/matclaw.png"
+      alt="MatClaw architecture: autonomous LLM agent orchestrating materials science workflows"
+      class="img-fluid section-figure-wide"
+    />
+  </div>
+
+  <!-- AI Section 2: CompMat-Bench -->
+  <div style="padding-top: 1rem; padding-bottom: 3rem;">
+    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 620px; margin-bottom: 2rem;">
+      Benchmarking AI agents on the steps of real materials research
+    </h2>
+
+    <!-- Description: two columns -->
+    <div class="row g-4 align-items-start">
+      <div class="col-md-6">
+        <p class="section-subtext">
+          CompMat-Bench is a benchmark of 94 tasks from 15 recently published
+          computational materials studies. The expensive simulations are run in
+          advance, and answers are graded by fixed rules with no LLM judge.
+        </p>
+        <div class="mt-3">
+          <a href="compmat-bench.html" class="pill-link">Project page</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <p class="section-subtext">
+          With full guidance, agents pass 66 to 90% of single research steps.
+          Long workflows with reduced guidance are much harder, and most failures
+          are scientific errors: agents miss what an experienced researcher would
+          notice.
+        </p>
+      </div>
+    </div>
+
+    <!-- Figure: full width (no border) -->
+    <img
+      src="images/compmat-bench-overview.png"
+      alt="Overview of CompMat-Bench: a published study is split into research steps, the expensive simulation is run once by the authors, and agent answers are graded by fixed rules"
+      class="img-fluid section-figure-wide"
+    />
+  </div>
+
+  <!-- AI Section 3: Cu-In-Se discovery -->
+  <div style="padding-top: 1rem; padding-bottom: 3rem;">
+    <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 620px; margin-bottom: 2rem;">
+      Materials discovery carried out by an autonomous agent
+    </h2>
+
+    <div class="row g-4 align-items-center">
+      <!-- Left: Description -->
+      <div class="col-md-6">
+        <p class="section-subtext">
+          Humans define the scientific tasks, and an autonomous LLM agent carries
+          them out. We apply this workflow to Cu-In-Se, the system of the solar
+          absorber CuInSe<sub>2</sub>.
+        </p>
+        <p class="section-subtext mt-3">
+          The agent joins different methods in one workflow: structure generation
+          with MatterGen, screening with machine-learning potentials, DFT with
+          VASP, and phonon calculations with Phonopy. It writes the Python that
+          connects them and runs the jobs on a supercomputer. From a single
+          request, it completed the screening shown here with no further human
+          input.
+        </p>
+        <div class="mt-3">
+          <a href="cu-in-se.html" class="pill-link">Project page</a>
+          <a href="https://doi.org/10.5281/zenodo.22184655" target="_blank" class="pill-link">Data</a>
+        </div>
+      </div>
 
       <!-- Right: Figure (no border) -->
       <div class="col-md-6">
         <img
-          src="images/matclaw.png"
-          alt="MatClaw architecture: autonomous LLM agent orchestrating materials science workflows"
+          src="images/cu-in-se-funnel.png"
+          alt="Screening funnel: 1,000 generated structures, 578 after deduplication, 268 after screening with a machine-learning potential, 45 validated with DFT, 19 below the Materials Project hull, 6 on the combined hull"
           class="img-fluid"
         />
       </div>
     </div>
   </div>
 
-  <!-- AI Section 2: Autonomous research loop / band-gap -->
+  <!-- AI Section 4: Autonomous research loop / band-gap -->
   <div style="padding-top: 1rem; padding-bottom: 3rem;">
     <h2 class="section-heading" style="font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; max-width: 620px; margin-bottom: 2rem;">
       LLM-agent research loop optimizing materials ML models

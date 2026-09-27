@@ -1,0 +1,69 @@
+---
+layout: project
+title: Chenmu Zhang - Off-stoichiometric Cu-In-Se
+description: Task-oriented materials discovery by an autonomous LLM agent, applied to off-stoichiometric structures in Cu-In-Se.
+heading: "Off-stoichiometric energetic and electronic asymmetry in ternary Cu-In-Se: task-oriented materials discovery by an autonomous LLM agent"
+authors: "Zhenkun Yuan* and Chenmu Zhang*"
+affiliation: "Department of Materials Science and NanoEngineering, Rice University"
+author_note: "* These authors contributed equally."
+links:
+  - label: Paper
+  - label: Data
+    url: https://doi.org/10.5281/zenodo.22184655
+  - label: MatClaw
+    url: https://github.com/cz2014/MatClaw
+summary: >-
+  Humans define the scientific tasks, and an autonomous LLM agent carries out
+  the calculations. We apply this workflow to Cu-In-Se, the system of the
+  solar absorber CuInSe<sub>2</sub>, and search for low-energy structures on
+  both the Cu-rich and the Cu-poor side.
+findings:
+  - claim: "Humans define the tasks, and the agent carries them out."
+    detail: >-
+      From a single request, the agent completed the first task in 183 steps
+      with no further human input. The authors reviewed the scientific
+      validity of the outputs and extended the checks where the automated runs
+      were incomplete.
+  - claim: "The agent joins different methods in one workflow."
+    detail: >-
+      Structure generation with MatterGen and icet, machine-learning
+      potentials, DFT with VASP, phonon calculations with Phonopy and a
+      band-gap model. The agent writes the Python that connects them and runs
+      the jobs on a supercomputer.
+  - claim: "The search reveals an electronic asymmetry in Cu-In-Se."
+    detail: >-
+      Within 25 meV per atom of the reference hull, the Cu-rich side holds 202
+      structures, all classified as metallic, and 198 of them have no match in
+      the Materials Project, OQMD, Alexandria or GNoME. The Cu-poor side holds
+      40, including 34 semiconductor candidates.
+figures:
+  - src: images/cu-in-se-workflow.png
+    max_width: 760px
+    alt: "The human provides three task descriptions and the agent runs the structure generation, screening, DFT and analysis tools. A timeline shows 184 agent steps with decisions and self-corrections."
+    caption: >-
+      (a) The task-oriented workflow. The human provides task descriptions,
+      and the agent orchestrates the structure-generation, simulation and
+      analysis tools. (b) Agent behavior after the first request. Gray bars
+      show when each activity was performed, blue circles mark decisions made
+      by the agent, and red diamonds mark self-corrections after environment
+      or workflow failures.
+  - src: images/cu-in-se-funnel.png
+    max_width: 640px
+    alt: "Screening funnel: 1,000 generated structures, 578 after deduplication, 268 after screening with a machine-learning potential, 45 validated with DFT, 19 below the Materials Project hull, 6 on the combined hull."
+    caption: >-
+      Hierarchical screening of the generated structures in the first task.
+      Of 1,000 generated structures, 45 were validated with DFT. 19 lie at or
+      below the Materials Project (MP) hull, and 6 remain on the hull built
+      from the MP entries and all 45 candidates.
+  - src: images/cu-in-se-asymmetry.png
+    max_width: 760px
+    alt: "Four composition directions from CuInSe2, the energies of enumerated structures relative to the reference hull, their predicted band gaps, and a comparison of two machine-learning potentials."
+    caption: >-
+      (a) Four composition directions from CuInSe<sub>2</sub>: to CuSe (D1),
+      InSe (D2), In<sub>2</sub>Se<sub>3</sub> (D3) and Cu<sub>2</sub>Se (D4).
+      (b) Energy of the enumerated structures relative to the reference hull.
+      Shading marks the 25 meV per atom window. (c) Predicted band gaps of the
+      low-energy structures along D1 and D3. Blue marks metals and orange
+      marks semiconductors. (d) Energies from two machine-learning potentials,
+      MACE and MatterSim, for the same low-energy structures.
+---

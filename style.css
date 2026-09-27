@@ -136,6 +136,112 @@ body {
   color: #1a1a1a;
 }
 
+.pill-link-pending,
+.pill-link-pending:hover {
+  background: transparent;
+  border-style: dashed;
+  border-color: #d1d5db;
+  color: #9ca3af;
+  cursor: default;
+}
+
+/* ---- Project Pages ---- */
+.project-header {
+  padding-top: 0.5rem;
+  padding-bottom: 1.25rem;
+}
+
+.project-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #1a1a1a;
+  max-width: 820px;
+}
+
+.project-authors {
+  font-size: 1.05rem;
+  max-width: 820px;
+  color: #374151;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.project-affiliation {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+.project-summary {
+  font-size: 1.1rem;
+  color: #374151;
+  line-height: 1.7;
+  max-width: 820px;
+}
+
+.finding-list {
+  list-style: none;
+  counter-reset: finding;
+  padding-left: 0;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 820px;
+}
+
+.finding-list li {
+  counter-increment: finding;
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.finding-list li::before {
+  content: counter(finding);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.finding-claim {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1a1a1a;
+}
+
+.finding-detail {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-top: 0.2rem;
+}
+
+.project-figure {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.project-figure figcaption {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.6;
+  text-align: left;
+  max-width: 820px;
+  margin-top: 0.75rem;
+}
+
+/* ---- Homepage Figures ---- */
+.section-figure-wide {
+  display: block;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
 /* ---- Spacing Helpers ---- */
 .section-gap {
   padding-top: 5rem;
@@ -159,6 +265,14 @@ body {
 
   .section-heading {
     font-size: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+  }
+
+  .finding-claim {
+    font-size: 1.1rem;
   }
 
   .section-gap {
