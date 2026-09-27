@@ -1,5 +1,6 @@
 ---
-layout: project
+layout: project-story
+display_title: "Agent-driven discovery in Cu–In–Se"
 title: Chenmu Zhang - Off-stoichiometric Cu-In-Se
 description: Task-oriented materials discovery by an autonomous LLM agent, applied to off-stoichiometric structures in Cu-In-Se.
 heading: "Off-stoichiometric energetic and electronic asymmetry in ternary Cu-In-Se: task-oriented materials discovery by an autonomous LLM agent"
@@ -16,28 +17,45 @@ summary: >-
   Humans define the scientific tasks, and an autonomous LLM agent carries out
   the calculations. We apply this workflow to Cu-In-Se, the system of the
   solar absorber CuInSe<sub>2</sub>, and search for low-energy structures on
-  both the Cu-rich and the Cu-poor side.
-findings:
-  - claim: "Humans define the tasks, and the agent carries them out."
-    detail: >-
-      From a single request, the agent completed the first task in 183 steps
-      with no further human input. The authors reviewed the scientific
-      validity of the outputs and extended the checks where the automated runs
-      were incomplete.
-  - claim: "The agent joins different methods in one workflow."
-    detail: >-
-      Structure generation with MatterGen and icet, machine-learning
-      potentials, DFT with VASP, phonon calculations with Phonopy and a
-      band-gap model. The agent writes the Python that connects them and runs
-      the jobs on a supercomputer.
-  - claim: "The search reveals an electronic asymmetry in Cu-In-Se."
-    detail: >-
-      Within 25 meV per atom of the reference hull, the Cu-rich side holds 202
-      structures, all classified as metallic, and 198 of them have no match in
-      the Materials Project, OQMD, Alexandria or GNoME. The Cu-poor side holds
-      40, including 34 semiconductor candidates.
+  both the Cu-rich and the Cu-poor side. The search reveals an electronic
+  asymmetry between the two sides.
+sections:
+  - label: "01 / Workflow"
+    heading: "Humans define the tasks. The agent connects the methods."
+    figure_index: 0
+    paragraphs:
+      - >-
+        The agent joins structure generation with MatterGen and icet,
+        machine-learning potentials, DFT with VASP, phonon calculations with
+        Phonopy and a band-gap model. It writes the Python that connects them
+        and runs the jobs on a supercomputer.
+      - >-
+        From a single request, the agent completed the first task in 183 steps
+        with no further human input. The authors reviewed the scientific
+        validity of the outputs and extended the checks where the automated runs
+        were incomplete.
+  - label: "02 / Screening"
+    heading: "From 1,000 generated structures to 45 DFT-validated candidates."
+    figure_index: 1
+    paragraphs:
+      - >-
+        The first task screens generated structures through deduplication,
+        a machine-learning potential, and DFT. Of the 45 DFT-validated
+        candidates, 19 lie at or below the Materials Project hull. Six remain
+        on the hull built from the Materials Project entries and all 45 candidates.
+  - label: "03 / Electronic structure"
+    heading: "The search reveals an electronic asymmetry in Cu–In–Se."
+    figure_index: 2
+    paragraphs:
+      - >-
+        Within 25 meV per atom of the reference hull, the Cu-rich side holds 202
+        structures, all classified as metallic, and 198 of them have no match in
+        the Materials Project, OQMD, Alexandria or GNoME. The Cu-poor side holds
+        40, including 34 semiconductor candidates.
 figures:
   - src: images/cu-in-se-workflow.png
+    width: 1800
+    height: 1374
     max_width: 760px
     alt: "The human provides three task descriptions and the agent runs the structure generation, screening, DFT and analysis tools. A timeline shows 184 agent steps with decisions and self-corrections."
     caption: >-
@@ -48,6 +66,8 @@ figures:
       by the agent, and red diamonds mark self-corrections after environment
       or workflow failures.
   - src: images/cu-in-se-funnel.png
+    width: 1600
+    height: 713
     max_width: 640px
     alt: "Screening funnel: 1,000 generated structures, 578 after deduplication, 268 after screening with a machine-learning potential, 45 validated with DFT, 19 below the Materials Project hull, 6 on the combined hull."
     caption: >-
@@ -56,6 +76,8 @@ figures:
       below the Materials Project (MP) hull, and 6 remain on the hull built
       from the MP entries and all 45 candidates.
   - src: images/cu-in-se-asymmetry.png
+    width: 1800
+    height: 1644
     max_width: 760px
     alt: "Four composition directions from CuInSe2, the energies of enumerated structures relative to the reference hull, their predicted band gaps, and a comparison of two machine-learning potentials."
     caption: >-

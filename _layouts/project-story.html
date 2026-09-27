@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<main class="site-container project-story">
+  <a class="back-link" href="{{ '/index.html' | relative_url }}">&larr; All research</a>
+  <header class="story-header">
+    <h1>{{ page.display_title }}</h1>
+    <p class="story-summary">{{ page.summary }}</p>
+    <p class="story-authors">{{ page.authors }}</p>
+    <p class="story-affiliation">{{ page.affiliation }}<br />{{ page.author_note }}</p>
+    <div class="research-links">
+      {% for link in page.links %}
+      {% if link.url %}
+      <a href="{{ link.url }}" target="_blank" rel="noopener" class="pill-link">{{ link.label }}</a>
+      {% else %}
+      <span class="publication-status">{{ link.label }} forthcoming</span>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </header>
+
+  {% for section in page.sections %}
+  <section class="story-section" aria-labelledby="finding-{{ forloop.index }}">
+    <div class="story-text">
+      <p class="research-group-label">{{ section.label }}</p>
+      <h2 id="finding-{{ forloop.index }}">{{ section.heading }}</h2>
+      {% for paragraph in section.paragraphs %}
+      <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+    {% assign figure = page.figures[section.figure_index] %}
+    <figure class="story-figure"{% if figure.max_width %} style="--figure-width: {{ figure.max_width }};"{% endif %}>
+      <a href="{{ figure.src | relative_url }}" target="_blank" rel="noopener">
+        <img src="{{ figure.src | relative_url }}" alt="{{ figure.alt }}"
+          width="{{ figure.width }}" height="{{ figure.height }}" loading="lazy" />
+        <span class="figure-action">View full-size figure &nearr;</span>
+      </a>
+      <figcaption>{{ figure.caption }}</figcaption>
+    </figure>
+  </section>
+  {% endfor %}
+
+  <section class="story-citation" aria-labelledby="paper-title">
+    <h2 id="paper-title">Research paper</h2>
+    <p class="paper-title">{{ page.heading }}</p>
+    <p>{{ page.authors }}<br />{{ page.affiliation }}<br />{{ page.author_note }}</p>
+  </section>
+  {{ content }}
+</main>
