@@ -1,12 +1,12 @@
 - number: 19
   authors: '<u>C. Zhang</u>*, L. C. Felix, J.-J. Zhang, X. Li, X. Jiang, T. Jiang, S. Mishra, X. Qin, and B. I. Yakobson'
   title: "CompMat-Bench: Benchmarking AI Agents for Computational Materials Science"
-  journal: "Submitted"
+  journal: "arXiv preprint arXiv:2610.00636"
   volume: ""
   issue: ""
   pages: ""
   year: 2026
-  doi: "/compmat-bench.html"
+  doi: "https://doi.org/10.48550/arXiv.2610.00636"
 
 - number: 18
   authors: 'Z. Yuan* and <u>C. Zhang</u>*'
