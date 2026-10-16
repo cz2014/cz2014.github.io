@@ -7,8 +7,6 @@ layout: default
   <header class="story-header">
     <h1>{{ page.display_title }}</h1>
     <p class="story-summary">{{ page.summary }}</p>
-    {% if page.authors %}<p class="story-authors">{{ page.authors }}</p>{% endif %}
-    {% if page.affiliation %}<p class="story-affiliation">{{ page.affiliation }}{% if page.author_note %}<br />{{ page.author_note }}{% endif %}</p>{% endif %}
     {% if page.links %}
     <div class="research-links">
       {% for link in page.links %}

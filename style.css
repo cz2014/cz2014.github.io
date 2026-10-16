@@ -386,18 +386,6 @@ button:focus-visible {
   margin-bottom: 24px;
 }
 
-.story-authors {
-  font-size: 0.95rem;
-  margin-bottom: 6px;
-}
-
-.story-affiliation {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--muted-ink);
-  margin: 0;
-}
-
 .publication-status {
   font-size: 0.85rem;
   color: var(--muted-ink);
