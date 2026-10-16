@@ -2,8 +2,8 @@
 layout: project-story
 title: Chenmu Zhang - CompMat-Bench
 description: >-
-  CompMat-Bench, a benchmark of 94 tasks for evaluating AI agents on the steps of published
-  computational materials research.
+  CompMat-Bench: 94 computational materials research tasks for evaluating AI agents,
+  with public tasks, graders and agent run records.
 heading: 'CompMat-Bench: Benchmarking AI Agents for Computational Materials Science'
 authors: >-
   Chenmu Zhang, Levi Felix, Jun-Jie Zhang, Xingfu Li, Xuelian Jiang, Tao Jiang, Subhendu Mishra,
@@ -14,12 +14,14 @@ links:
 - label: Paper
   url: https://arxiv.org/abs/2610.00636
 - label: Code and data
+  url: https://github.com/cz2014/CompMat-Bench
 - label: MatClaw
   url: https://github.com/cz2014/MatClaw
 summary: >-
   A benchmark of 94 tasks from 15 recently published computational materials studies. Each task
-  is one research step. The expensive simulations are run in advance, and answers are graded
-  by fixed rules with no LLM judge.
+  is one research step. For single-step evaluation, expensive simulations are run in advance,
+  and answers are graded by fixed rules with no LLM judge. Tasks, graders and agent run records
+  are available on GitHub.
 figures:
 - src: images/compmat-bench-results.png
   alt: >-
@@ -52,9 +54,9 @@ sections:
   heading: Research steps grounded in published studies.
   paragraphs:
   - >-
-    Each study is split into research steps. The expensive simulations are run once, in advance.
-    Agents prepare inputs or analyze precomputed outputs, and fixed rules grade their answers
-    against the reference results of our reproduction.
+    Each study is split into research steps. For single-step evaluation, expensive simulations
+    are run once, in advance. Agents prepare inputs or analyze precomputed outputs, and fixed
+    rules grade their answers against the reference results of our reproduction.
   figure_index: 1
 - label: 02 / Agent performance
   heading: Guidance and workflow length change agent performance.
@@ -75,4 +77,18 @@ sections:
     and agents built on different LLMs lack the same implicit knowledge, so they fail in the
     same way. In one workflow, the warning sign was printed in the agent's own output in nine
     failing runs. The agent continued anyway.
+- label: 04 / Public release
+  heading: Evaluate your agent and inspect the published runs.
+  paragraphs:
+  - >-
+    The GitHub release provides 94 single-step tasks with prompts, staged inputs, graders and
+    reference answers, plus 10 workflows: eight evaluated in the paper and two supplementary.
+  - >-
+    It also includes transcripts, submissions and grades for all 976 agent attempts reported
+    in the paper. Use the tasks to evaluate your own agent, or inspect the records to study
+    how agents succeed and fail.
+  - >-
+    The <a href="https://github.com/cz2014/CompMat-Bench" target="_blank" rel="noopener">repository README</a>
+    explains how to download the data, run a task and grade a submission, and documents software
+    requirements and third-party licences.
 ---
